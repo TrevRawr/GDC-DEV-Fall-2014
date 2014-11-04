@@ -1,0 +1,1 @@
+This directory is where SCENES should go. If you are not a PROGRAMMER AND ADMINISTRATOR you should not attempt to RENAME them.
