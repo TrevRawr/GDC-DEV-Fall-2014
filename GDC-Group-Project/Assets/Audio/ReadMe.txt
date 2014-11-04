@@ -1,0 +1,1 @@
+This directory is where AUDIO (SFX/MUSIC) should go. If you are not an artist/composer/admin, you may use the items in this folder, but should not attempt to edit them.

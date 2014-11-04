@@ -1,0 +1,1 @@
+This directory is where objects that will be loaded, but are not explicitly referenced in an inspector should go. If you are not a PROGRAMMER, you may use the items in this folder as components, but should not attempt to edit them.
