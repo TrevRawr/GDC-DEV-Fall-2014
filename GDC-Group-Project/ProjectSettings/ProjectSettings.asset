@@ -3,15 +3,15 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 3
+  serializedVersion: 2
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: GDC-Group-Project
+  productName: _2D v3
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
@@ -23,8 +23,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_MobileMTRendering: 0
-  m_UseDX11: 1
-  m_Stereoscopic3D: 0
+  m_UseDX11: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   displayResolutionDialog: 1
@@ -34,7 +33,7 @@ PlayerSettings:
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
-  use24BitDepthBuffer: 1
+  use24BitDepthBuffer: 0
   defaultIsFullScreen: 1
   defaultIsNativeResolution: 1
   runInBackground: 0
@@ -47,7 +46,7 @@ PlayerSettings:
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
-  gpuSkinning: 0
+  gpuSkinning: 1
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
   xboxEnableKinect: 0
@@ -57,7 +56,17 @@ PlayerSettings:
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
-  videoMemoryForVertexBuffers: 0
+  wiiHio2Usage: -1
+  wiiLoadingScreenRectPlacement: 0
+  wiiLoadingScreenBackground: {r: 1, g: 1, b: 1, a: 1}
+  wiiLoadingScreenPeriod: 1000
+  wiiLoadingScreenFileName: 
+  wiiLoadingScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   m_SupportedAspectRatios:
     4:3: 1
     5:4: 1
@@ -65,9 +74,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.Company.ProductName
-  metroEnableIndependentInputSource: 0
-  metroEnableLowLatencyPresentationAPI: 0
-  productGUID: e2a0f40386728b74d9bd42c90ccafae5
+  productGUID: 3a8984573b6d44decadf1ac29eacc6ec
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
@@ -82,7 +89,7 @@ PlayerSettings:
   APKExpansionFiles: 0
   StripUnusedMeshComponents: 0
   iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 16
+  iPhoneTargetOSVersion: 10
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIStatusBarHidden: 1
@@ -100,10 +107,25 @@ PlayerSettings:
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 0}
+      m_Size: 128
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
+  wiiRegion: 1
+  wiiGameCode: RABA
+  wiiGameVersion: 
+  wiiCompanyCode: ZZ
+  wiiSupportsNunchuk: 0
+  wiiSupportsClassicController: 0
+  wiiSupportsBalanceBoard: 0
+  wiiSupportsMotionPlus: 0
+  wiiControllerCount: 1
+  wiiFloatingPointExceptions: 0
+  wiiScreenCrashDumps: 1
   XboxTitleId: 
   XboxImageXexPath: 
   XboxSpaPath: 
@@ -126,72 +148,30 @@ PlayerSettings:
   ps3TrophyCommSig: 
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
-  psp2Splashimage: {fileID: 0}
-  psp2LiveAreaGate: {fileID: 0}
-  psp2LiveAreaBackround: {fileID: 0}
-  psp2NPTrophyPackPath: 
-  psp2NPCommsID: 
-  psp2NPCommsPassphrase: 
-  psp2NPCommsSig: 
-  psp2ParamSfxPath: 
-  psp2PackagePassword: 
-  psp2DLCConfigPath: 
-  psp2ThumbnailPath: 
-  psp2BackgroundPath: 
-  psp2SoundPath: 
-  psp2TrophyCommId: 
-  psp2TrophyPackagePath: 
-  psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
-  spritePackerPolicy: 
+  spritePackerPolicy: DefaultPackerPolicy
   scriptingDefineSymbols: {}
-  metroPackageName: GDC-Group-Project
+  metroPackageName: _2D v3
   metroPackageLogo: 
-  metroPackageLogo140: 
-  metroPackageLogo180: 
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: GDC-Group-Project
-  metroTileLogo80: 
+  metroApplicationDescription: _2D v3
   metroTileLogo: 
-  metroTileLogo140: 
-  metroTileLogo180: 
-  metroTileWideLogo80: 
   metroTileWideLogo: 
-  metroTileWideLogo140: 
-  metroTileWideLogo180: 
-  metroTileSmallLogo80: 
   metroTileSmallLogo: 
-  metroTileSmallLogo140: 
-  metroTileSmallLogo180: 
-  metroSmallTile80: 
-  metroSmallTile: 
-  metroSmallTile140: 
-  metroSmallTile180: 
-  metroLargeTile80: 
-  metroLargeTile: 
-  metroLargeTile140: 
-  metroLargeTile180: 
   metroTileShortName: 
   metroCommandLineArgsFile: 
-  metroTileShowName: 0
-  metroMediumTileShowName: 0
-  metroLargeTileShowName: 0
-  metroWideTileShowName: 0
-  metroDefaultTileSize: 1
+  metroTileShowName: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenImage: 
-  metroSplashScreenImage140: 
-  metroSplashScreenImage180: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities: {}
-  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 
@@ -217,9 +197,7 @@ PlayerSettings:
   tizenProductURL: 
   tizenCertificatePath: 
   tizenCertificatePassword: 
-  tizenGPSPermissions: 0
-  tizenMicrophonePermissions: 0
-  stvDeviceAddress: 
+  tizenSaveLogPath: 
   firstStreamedLevelWithResources: 0
   unityRebuildLibraryVersion: 9
   unityForwardCompatibleVersion: 39
