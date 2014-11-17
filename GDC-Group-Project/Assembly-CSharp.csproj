@@ -68,8 +68,14 @@
      <Compile Include="Assets\Scripts\ScoreShadow.cs" />
      <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <None Include="Assets\Audio\ReadMe.txt" />
+     <None Include="Assets\Prefabs\ReadMe.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Scripts\ReadMe.txt" />
+     <None Include="Assets\Resources\ReadMe.txt" />
+     <None Include="Assets\Scenes\ReadMe.txt" />
+     <None Include="Assets\Objects\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

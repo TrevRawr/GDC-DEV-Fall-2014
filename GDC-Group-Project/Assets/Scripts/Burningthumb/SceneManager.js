@@ -13,7 +13,7 @@ By default this means that scene file names should match the name of the root ob
 @include SaveManager
 @bug Destroy not working. Do slow poll until scene is loaded therefore object created. 
 */
-static class SceneManager extends Manager
+static class SceneManager
 {
 
 	enum e_SceneLoadMode
