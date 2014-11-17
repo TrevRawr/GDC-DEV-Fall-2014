@@ -1,0 +1,1 @@
+This directory is where MODELS & MATERIALS/TEXTURES (automatic) should go. If you are not an artist, you may use the items in this folder as components, but should not attempt to edit them.
