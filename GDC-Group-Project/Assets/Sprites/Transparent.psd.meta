@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 74f110685d92129438be97742d6f8338
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Transparent_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 120
+        width: 7
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 120
+        width: 7
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 120
+        width: 4
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_3
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 102
+        width: 48
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_4
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 102
+        width: 46
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_5
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 102
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_6
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 102
+        width: 49
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_7
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 102
+        width: 47
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_8
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 102
+        width: 48
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_9
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 102
+        width: 46
+        height: 40
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_10
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 102
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_11
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 102
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_12
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 102
+        width: 47
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_13
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 70
+        width: 6
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_14
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 70
+        width: 12
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_15
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 70
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_16
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 70
+        width: 4
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 47
+        width: 45
+        height: 52
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_18
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 47
+        width: 45
+        height: 52
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_19
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 47
+        width: 45
+        height: 52
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_20
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 47
+        width: 45
+        height: 52
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_21
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 47
+        width: 45
+        height: 52
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_22
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 47
+        width: 57
+        height: 38
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_23
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 47
+        width: 57
+        height: 38
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_24
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 47
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_25
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 47
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_26
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 47
+        width: 50
+        height: 38
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_27
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 47
+        width: 50
+        height: 38
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_28
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 69
+        width: 6
+        height: 4
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_29
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 68
+        width: 5
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_30
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 69
+        width: 7
+        height: 4
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_31
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 67
+        width: 14
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_32
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 32
+        width: 9
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_33
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 32
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_34
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 32
+        width: 8
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_35
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 32
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_36
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 3
+        width: 48
+        height: 41
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_37
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 3
+        width: 136
+        height: 36
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_38
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 18
+        width: 8
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_39
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 20
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_40
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 20
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_41
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 20
+        width: 7
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_42
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 18
+        width: 6
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_43
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 20
+        width: 4
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_44
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 15
+        width: 50
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_45
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 9
+        width: 6
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_46
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 7
+        width: 4
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_47
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 9
+        width: 7
+        height: 8
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_48
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 9
+        width: 12
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Transparent_49
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 7
+        width: 8
+        height: 10
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
