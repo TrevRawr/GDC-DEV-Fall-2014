@@ -1,0 +1,746 @@
+fileFormatVersion: 2
+guid: 96524eff34714b54da5cfc68c900daa6
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 507
+        width: 61
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 508
+        width: 69
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 511
+        width: 71
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_3
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 473
+        width: 199
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_4
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 464
+        width: 63
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_5
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 464
+        width: 73
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_6
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 467
+        width: 73
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_7
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 419
+        width: 61
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_8
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 419
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_9
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 424
+        width: 130
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_10
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 445
+        width: 41
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_11
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 423
+        width: 63
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_12
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 429
+        width: 63
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_13
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 375
+        width: 63
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_14
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 375
+        width: 63
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_15
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 375
+        width: 134
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_16
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 387
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_17
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 387
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_18
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 384
+        width: 41
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_19
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 315
+        width: 130
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_20
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 316
+        width: 130
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_21
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 318
+        width: 130
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_22
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 265
+        width: 134
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_23
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 266
+        width: 134
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_24
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 268
+        width: 134
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_25
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 216
+        width: 63
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_26
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 217
+        width: 69
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_27
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 220
+        width: 71
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_28
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 213
+        width: 134
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_29
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 169
+        width: 63
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_30
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 169
+        width: 73
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_31
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 172
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_32
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 159
+        width: 127
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_33
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 120
+        width: 130
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_34
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 120
+        width: 131
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_35
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 119
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_36
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 124
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_37
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 120
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_38
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 46
+        width: 122
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_39
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 97
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_40
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 97
+        width: 37
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_41
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 97
+        width: 33
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_42
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 97
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_43
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 97
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_44
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 94
+        width: 35
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_45
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 97
+        width: 35
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_46
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 78
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_47
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 81
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_48
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 81
+        width: 38
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_49
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 81
+        width: 40
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_50
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 81
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_51
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 62
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_52
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 65
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_53
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 62
+        width: 39
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_54
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 62
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_55
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 65
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_56
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 65
+        width: 71
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_57
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 49
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_58
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 49
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_59
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 49
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_60
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 49
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_61
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 49
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_62
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 46
+        width: 27
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_63
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 49
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_64
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 49
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_65
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 49
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_66
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 46
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_67
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 49
+        width: 31
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_68
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 10
+        width: 64
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: DeLorean_Sprites_Sheet_by_Poke_Yoshi_69
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 11
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
