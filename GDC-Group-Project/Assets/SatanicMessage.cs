@@ -14,8 +14,9 @@ public class SatanicMessage : MonoBehaviour {
 		Debug.Log("Summoning Satan");
 		while(true)
 		{
-			//see it between every 15s and 10 minutes
-			float t = Random.Range(5f,600.0f);
+			//see it between every 5s and 4 minutes, this way some people never see it, others can't figure out 
+			//what it its
+			float t = Random.Range(5f,240.0f);
 			Debug.Log("Summoning Satan in "+t);
 			yield return new WaitForSeconds(t);
 			Debug.Log("Summoning Satan");
@@ -30,7 +31,7 @@ public class SatanicMessage : MonoBehaviour {
 		Color revert = s.color;
 		s.color = satanColor;
 		//Debug.Break();
-		//5 frames of wtf
+		//2 frames of wtf
 		yield return new WaitForEndOfFrame();
 		yield return new WaitForEndOfFrame();
 

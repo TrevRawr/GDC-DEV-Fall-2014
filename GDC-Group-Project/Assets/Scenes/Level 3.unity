@@ -13432,7 +13432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theTarget: {fileID: 1972830852}
-  lag: .0500000007
+  lag: .0450000018
   followX: 1
   followY: 0
   followZ: 0
