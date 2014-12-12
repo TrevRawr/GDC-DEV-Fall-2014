@@ -5,11 +5,11 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dino
+  m_Name: Dino Controller
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: isRunning
-    m_Type: 4
+  - m_Name: move
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -17,7 +17,7 @@ AnimatorController:
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
-    m_StateMachine: {fileID: 110700000}
+    m_StateMachine: {fileID: 110795492}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -26,98 +26,123 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110100000
+--- !u!1101 &110116290
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110208916}
+  m_SrcState: {fileID: 110286778}
+  m_DstState: {fileID: 110222322}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: isRunning
-    m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: move
+    m_EventTreshold: .00999999978
+    m_ExitTime: 1
+  - m_ConditionMode: 3
+    m_ConditionEvent: move
+    m_EventTreshold: -.00999999978
     m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110170108
+--- !u!1101 &110154662
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110208916}
-  m_DstState: {fileID: 110200000}
+  m_SrcState: {fileID: 110222322}
+  m_DstState: {fileID: 110286778}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: isRunning
+  - m_ConditionMode: 4
+    m_ConditionEvent: move
     m_EventTreshold: 0
     m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1102 &110200000
+--- !u!1101 &110192046
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110222322}
+  m_DstState: {fileID: 110286778}
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: move
+    m_EventTreshold: 0
+    m_ExitTime: 1
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1102 &110222322
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Animation
+  m_Name: Dino Still
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: a5dd952ded2ba804bb76103f724ee7a2, type: 2}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -60, y: 48, z: 0}
+  - {fileID: 7400000, guid: bf0aebf92b848364e85daa97d472d2a8, type: 2}
+  m_ParentStateMachine: {fileID: 110795492}
+  m_Position: {x: 252, y: 216, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110208916
+--- !u!1102 &110286778
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Running
+  m_Name: Dino Walk 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: ac414b037371837478c46329e04be556, type: 2}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 85, y: 115, z: 0}
+  - {fileID: 7400000, guid: e937b5949fc787a49986566586734c14, type: 2}
+  m_ParentStateMachine: {fileID: 110795492}
+  m_Position: {x: 84, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1107 &110700000
+--- !u!1107 &110795492
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110200000}
+  m_DefaultState: {fileID: 110222322}
   m_States:
-  - {fileID: 110200000}
-  - {fileID: 110208916}
+  - {fileID: 110286778}
+  - {fileID: 110222322}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110208916}
+      first: {fileID: 110222322}
       second:
-      - {fileID: 110170108}
+      - {fileID: 110192046}
+      - {fileID: 110154662}
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 110286778}
       second:
-      - {fileID: 110100000}
+      - {fileID: 110116290}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 120, y: -48, z: 0}
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
