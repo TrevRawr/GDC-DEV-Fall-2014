@@ -12,13 +12,14 @@ ExportedObj/
 obj/
 *.svd
 *.userprefs
-/*.csproj
+*.csproj
 *.pidb
 *.suo
 /*.sln
 *.user
 *.unityproj
 *.booproj
+
 
 ============
 OS generated
