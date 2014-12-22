@@ -1,0 +1,69 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{E55D6C7C-C36E-4EA1-190B-79F7FF174564}") = "GDC-Group-Project", "Assembly-CSharp-firstpass-vs.csproj", "{0EE2C09E-20CD-A43C-9694-B8813F0B2B66}"
+EndProject
+Project("{E55D6C7C-C36E-4EA1-190B-79F7FF174564}") = "GDC-Group-Project", "Assembly-CSharp-vs.csproj", "{E0E8C5E6-BCF9-9C0F-098E-28F742BEBBF5}"
+EndProject
+Project("{E55D6C7C-C36E-4EA1-190B-79F7FF174564}") = "GDC-Group-Project", "Assembly-CSharp-Editor-vs.csproj", "{B9D40284-8CC2-5042-F389-406D982B87EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EE2C09E-20CD-A43C-9694-B8813F0B2B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE2C09E-20CD-A43C-9694-B8813F0B2B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE2C09E-20CD-A43C-9694-B8813F0B2B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE2C09E-20CD-A43C-9694-B8813F0B2B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E8C5E6-BCF9-9C0F-098E-28F742BEBBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E8C5E6-BCF9-9C0F-098E-28F742BEBBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E8C5E6-BCF9-9C0F-098E-28F742BEBBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E8C5E6-BCF9-9C0F-098E-28F742BEBBF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D40284-8CC2-5042-F389-406D982B87EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D40284-8CC2-5042-F389-406D982B87EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D40284-8CC2-5042-F389-406D982B87EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D40284-8CC2-5042-F389-406D982B87EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																													GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+																								GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
