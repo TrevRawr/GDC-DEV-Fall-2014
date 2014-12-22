@@ -48,14 +48,19 @@
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
+     <None Include="Assets\e2d\Resources\Fill.shader" />
      <None Include="Assets\Audio\ReadMe.txt" />
+     <None Include="Assets\e2d\Resources\Curve.shader" />
      <None Include="Assets\Prefabs\ReadMe.txt" />
+     <None Include="Assets\e2d\VERSION.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\e2d\LICENSE.txt" />
      <None Include="Assets\Scripts\ReadMe.txt" />
      <None Include="Assets\Resources\ReadMe.txt" />
      <None Include="Assets\Scenes\ReadMe.txt" />
      <None Include="Assets\Objects\ReadMe.txt" />
+     <None Include="Assets\e2d\Resources\Grass.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
