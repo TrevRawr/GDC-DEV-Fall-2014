@@ -104,7 +104,7 @@
      <None Include="Assets\Objects\ReadMe.txt" />
      <None Include="Assets\e2d\Resources\Grass.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Trevor/Documents/GDC-DEV-Fall-2014/GDC-Group-Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Sami/Documents/GDC-DEV-Fall-2014/GDC-Group-Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
