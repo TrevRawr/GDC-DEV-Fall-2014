@@ -4,12 +4,13 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {	
 	public float health = 100f;					// The player's health.
+	public float maxHealth = 100f;
 	public float repeatDamagePeriod = 2f;		// How frequently the player can be damaged.
 	public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
 	public float damageAmount = 10f;			// The amount of damage to take when enemies touch the player
 
-	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
+	public SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private PlayerControl playerControl;		// Reference to the PlayerControl script.
@@ -20,7 +21,17 @@ public class PlayerHealth : MonoBehaviour
 	{
 		// Setting up references.
 		playerControl = GetComponent<PlayerControl>();
+
+		if(healthBar == null)
 		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+
+		if(healthBar == null)
+		{
+			Debug.LogError("Health bar not found");
+			Debug.Break();
+		}
+
+
 		anim = GetComponent<Animator>();
 
 		// Getting the intial scale of the healthbar (whilst the player has full health).
@@ -71,13 +82,21 @@ public class PlayerHealth : MonoBehaviour
 				}
 			}
 		}
+		if(this.health < maxHealth)
+		{
+			DisplayHealth();
+		}
 	}
 
+	void DisplayHealth()
+	{
+		healthBar.enabled = true;
+	}
 
 	void TakeDamage (Transform enemy)
 	{
 		// Make sure the player can't jump.
-		playerControl.jump = false;
+		//playerControl.jump = false;
 
 		// Create a vector that's from the enemy to the player with an upwards boost.
 		Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 5f;

@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
+		//score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
 	void FixedUpdate ()
