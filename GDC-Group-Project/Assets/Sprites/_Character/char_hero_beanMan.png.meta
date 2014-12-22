@@ -1,6 +1,17 @@
 fileFormatVersion: 2
 guid: e7d3a1e0e2fac4bd48b6734c2daf4fe1
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: rightFoot
+    21300002: leftFoot
+    21300004: body
+    21300006: tache
+    21300008: leftHand
+    21300010: hat
+    21300012: rightHand
+    21300014: bazooka
+    21300016: rightEye
+    21300018: leftEye
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

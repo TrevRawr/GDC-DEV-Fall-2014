@@ -1,6 +1,11 @@
 fileFormatVersion: 2
 guid: 361e1e5d552ad444fb688b5203c01caa
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: enemy1-tail
+    21300002: enemy1-body
+    21300004: enemy1-eye
+    21300006: enemy1-eyelid
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
