@@ -7,7 +7,7 @@ public class MessageOnCollision : MonoBehaviour {
 	public GameObject[] targets;
 	public SendMessageOptions options = SendMessageOptions.DontRequireReceiver;
 
-	void OnCollisionEnter2D(Collider2D other)
+	void OnCollisionEnter2D(Collision2D other)
 	{
 		foreach(GameObject g in targets)
 		{
@@ -15,7 +15,7 @@ public class MessageOnCollision : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collider other)
+	void OnCollisionEnter(Collision other)
 	{
 		foreach(GameObject g in targets)
 		{

@@ -5,6 +5,7 @@ var waitTime : float;
 var interval : float;
 var lerpStep : float;
 var activateOnAwake : boolean = true;
+var activated : boolean = false;
 
 function Awake()
 {
@@ -16,7 +17,13 @@ function Awake()
 
 function Activate()
 {
-MovePlatform();
+	if (activated)
+		return;
+	else
+	{
+		activated = true;
+		MovePlatform();
+	}
 }
 
 function OnCollisionEnter( other : Collision)
