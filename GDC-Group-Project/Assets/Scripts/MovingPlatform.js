@@ -4,14 +4,28 @@ var waypoints : Transform[];
 var waitTime : float;
 var interval : float;
 var lerpStep : float;
+var activateOnAwake : boolean = true;
+var activated : boolean = false;
 
 function Awake()
 {
 	transform.position=waypoints[0].position;
 	
-	
-	MovePlatform();
+	if(activateOnAwake)
+	Activate();
 }
+
+function Activate()
+{
+	if (activated)
+		return;
+	else
+	{
+		activated = true;
+		MovePlatform();
+	}
+}
+
 function OnCollisionEnter( other : Collision)
 {
 //Debug.Log("Transfered");

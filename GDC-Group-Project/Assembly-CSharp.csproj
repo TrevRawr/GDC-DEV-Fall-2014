@@ -56,12 +56,14 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\GDC Member Scripts\Dino_Move.cs" />
+     <Compile Include="Assets\Scripts\GDC Member Scripts\EnableOnCollision.cs" />
      <Compile Include="Assets\Scripts\GDC Member Scripts\FollowCam.cs" />
      <Compile Include="Assets\Scripts\GDC Member Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\GDC Member Scripts\SatanicMessage.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\LayBombs.cs" />
+     <Compile Include="Assets\Scripts\MessageOnCollision.cs" />
      <Compile Include="Assets\Scripts\Pauser.cs" />
      <Compile Include="Assets\Scripts\PickupSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
