@@ -31,3 +31,6 @@ OS generated
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.csproj
+*.csproj
+*.sln

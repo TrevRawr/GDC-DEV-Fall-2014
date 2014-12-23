@@ -5,12 +5,13 @@ public class Remover : MonoBehaviour
 {
 	public GameObject splash;
 
-
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		// If the player hits the trigger...
 		if(col.gameObject.tag == "Player")
 		{
+			Debug.Log("Player is dead");	
+
 			// .. stop the camera tracking the player
 			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().enabled = false;
 
@@ -27,13 +28,24 @@ public class Remover : MonoBehaviour
 			// ... reload the level.
 			StartCoroutine("ReloadGame");
 		}
-		else
+
+		// If the player hits the trigger...
+		else if (col.gameObject.tag == "Enemy")
 		{
+			Debug.Log("Enemy is dead");			
+
 			// ... instantiate the splash where the enemy falls in.
 			Instantiate(splash, col.transform.position, transform.rotation);
 
 			// Destroy the enemy.
 			Destroy (col.gameObject);	
+		}
+
+		// If everything else hits the trigger...
+		else
+		{
+			Debug.Log("Something went wrong");
+			Destroy (col.gameObject);
 		}
 	}
 
