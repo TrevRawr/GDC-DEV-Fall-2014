@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-		//score = GameObject.Find("Score").GetComponent<Score>();
+		score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
 	void FixedUpdate ()
@@ -53,9 +53,11 @@ public class Enemy : MonoBehaviour
 			ren.sprite = damagedEnemy;
 			
 		// If the enemy has zero or fewer hit points and isn't dead yet...
-		if(HP <= 0 && !dead)
+		if (HP <= 0 && !dead)
+		{
 			// ... call the death function.
 			Death ();
+		}
 	}
 	
 	public void Hurt()
@@ -80,7 +82,7 @@ public class Enemy : MonoBehaviour
 		ren.sprite = deadEnemy;
 
 		// Increase the score by 100 points
-		score.score += 100;
+		score.score = score.score + 100;
 
 		// Set dead to true.
 		dead = true;
@@ -107,6 +109,9 @@ public class Enemy : MonoBehaviour
 
 		// Instantiate the 100 points prefab at this point.
 		Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
+
+		// After 2 seconds, gameobject is destroyed
+		GameObject.Destroy (gameObject, 2);
 	}
 
 
