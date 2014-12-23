@@ -115,6 +115,15 @@ public class PlayerHealth : MonoBehaviour
 		AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
 	}
 
+	void KillDino ()
+	{
+		health = -1;
+		anim.SetTrigger("Die");
+		Debug.Log ("Dino died aaaa!!");
+		Application.LoadLevel(Application.loadedLevel);
+	}
+
+
 
 	public void UpdateHealthBar ()
 	{
