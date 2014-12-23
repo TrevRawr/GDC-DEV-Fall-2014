@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dino_Move : MonoBehaviour 
+public class DinoMove : MonoBehaviour 
 {
 	Animator dino;  		// Animation state machine for dino
 	public float maxSpeed;	// The maximum speed the dino can go

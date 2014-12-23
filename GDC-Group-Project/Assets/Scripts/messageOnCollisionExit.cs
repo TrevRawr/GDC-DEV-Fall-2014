@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class messageOnCollisionExit : MonoBehaviour {
+public class MessageOnCollisionExit : MonoBehaviour {
 
 	public bool onTrigger = false;
 	public string message = "Activate";

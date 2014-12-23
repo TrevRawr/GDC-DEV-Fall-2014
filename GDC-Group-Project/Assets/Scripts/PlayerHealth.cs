@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
 	void TakeDamage (Transform enemy)
 	{
 		// Make sure the player can't jump.
-		//playerControl.jump = false;
+		//playerControl.jump = false; // must refer to dino move
 
 		// Create a vector that's from the enemy to the player with an upwards boost.
 		Vector3 hurtVector = transform.position - enemy.position + Vector3.up * 5f;
