@@ -82,8 +82,14 @@ public class Enemy : MonoBehaviour
 		ren.sprite = deadEnemy;
 
 		// Increase the score by 100 points
+		if(score != null)
 		score.score = score.score + 100;
-
+		else
+		{
+			Debug.LogWarning("Score does not exist in this level, and enemies should " +
+			                 "not be resposible for directly affecting the scoreboard.");
+			//TODO, add static score class, so score persists accross levels and can be saved
+		}
 		// Set dead to true.
 		dead = true;
 
