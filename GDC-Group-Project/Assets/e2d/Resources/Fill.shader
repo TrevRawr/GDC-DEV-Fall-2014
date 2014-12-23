@@ -6,7 +6,7 @@
 ///
 /// Based on Transparent/Cutout/Diffuse
 
-Shader "e2d/Fill" {
+Shader "Shinigami/Terrain/Fill" {
 Properties {
 	_Color ("Main Color", Color) = (1,1,1,1)
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
@@ -14,9 +14,9 @@ Properties {
 
 SubShader {
 	Tags {
-		"Queue"="Transparent+101"
+		"Queue"="Transparent"
 		"IgnoreProjector"="False"
-		"RenderType"="Opaque"
+		"RenderType"="TransparentCutout"
 	}
 
 CGPROGRAM
@@ -37,5 +37,5 @@ void surf (Input IN, inout SurfaceOutput o) {
 ENDCG
 }
 
-Fallback "Transparent/VertexLit"
+Fallback "Bumped Specular"
 }

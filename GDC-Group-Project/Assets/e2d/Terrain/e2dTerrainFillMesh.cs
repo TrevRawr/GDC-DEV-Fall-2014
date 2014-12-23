@@ -74,6 +74,8 @@ public class e2dTerrainFillMesh: e2dTerrainMesh
 		filter.sharedMesh.uv = uvs;
 		filter.sharedMesh.triangles = triangles;
 
+        e2dUtils.Solve(filter.sharedMesh);
+
 
 		if (SomeMaterialsMissing()) RebuildMaterial();
 	}
@@ -129,9 +131,9 @@ public class e2dTerrainFillMesh: e2dTerrainMesh
 		// finally, add the curve itself
 		foreach (e2dCurveNode node in TerrainCurve)
 		{
+
 			polygon.Add(node.position);
 		}
-
 		// check if the first and last points are not the same
 		if (polygon[polygon.Count - 1] == polygon[0])
 		{
@@ -197,12 +199,26 @@ public class e2dTerrainFillMesh: e2dTerrainMesh
 		}
 
 		materials = new Material[1];
-		materials[0] = new Material(Shader.Find("e2d/Fill"));
+        if(Terrain.ReplacementFillShader != null)
+            materials[0] = new Material(Terrain.ReplacementFillShader);
+        else
+            materials[0] = new Material(Shader.Find("Shinigami/Terrain/Fill"));
 		if (!Terrain.FillTexture)
 		{
 			Terrain.FillTexture = (Texture)Resources.Load("defaultFillTexture", typeof(Texture));
 		}
 		materials[0].mainTexture = Terrain.FillTexture;
+        if (Terrain.NormalFillTexture != null)
+        {
+            if (materials[0].HasProperty("_Normal")) materials[0].SetTexture("_Normal", Terrain.NormalFillTexture);
+            if (materials[0].HasProperty("_NormalMap")) materials[0].SetTexture("_NormalMap", Terrain.NormalFillTexture);
+        }
+        if(materials[0].HasProperty("_SpecBrightness")) materials[0].SetFloat("_SpecBrightness",Terrain.Specular);
+        if (materials[0].HasProperty("_Spec")) materials[0].SetFloat("_Spec", Terrain.Specular);
+        if (materials[0].HasProperty("_Specular")) materials[0].SetFloat("_Specular", Terrain.Specular);
+        if (materials[0].HasProperty("_RimPower")) materials[0].SetFloat("_RimPower", Terrain.Rimlight);
+        if (materials[0].HasProperty("_Rim")) materials[0].SetFloat("_Rim", Terrain.Rimlight);
+        if (materials[0].HasProperty("_Power")) materials[0].SetFloat("_Power", Terrain.Rimlight);
 
 		renderer.materials = materials;
 	}

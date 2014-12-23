@@ -48,7 +48,7 @@ public abstract class e2dTerrainMesh
 	/// Makes sure the sub-objects of the main game object are read to use.
 	protected void ResetMeshObjectsTransforms()
 	{
-		transform.FindChild(e2dConstants.FILL_MESH_NAME).transform.localPosition = Vector3.zero;
+        transform.FindChild(e2dConstants.FILL_MESH_NAME).transform.localPosition = new Vector3(0, 0, Terrain.FillOffset);
 		transform.FindChild(e2dConstants.FILL_MESH_NAME).transform.localRotation = Quaternion.identity;
 		transform.FindChild(e2dConstants.FILL_MESH_NAME).transform.localScale = Vector3.one;
 
@@ -56,13 +56,9 @@ public abstract class e2dTerrainMesh
 		transform.FindChild(e2dConstants.CURVE_MESH_NAME).transform.localRotation = Quaternion.identity;
 		transform.FindChild(e2dConstants.CURVE_MESH_NAME).transform.localScale = Vector3.one;
 
-		transform.FindChild(e2dConstants.GRASS_MESH_NAME).transform.localPosition = Vector3.zero;
+		transform.FindChild(e2dConstants.GRASS_MESH_NAME).transform.localPosition = new Vector3(0,0,Terrain.GrassOffset);
 		transform.FindChild(e2dConstants.GRASS_MESH_NAME).transform.localRotation = Quaternion.identity;
 		transform.FindChild(e2dConstants.GRASS_MESH_NAME).transform.localScale = Vector3.one;
-
-		transform.FindChild(e2dConstants.COLLIDER_MESH_NAME).transform.localPosition = Vector3.zero;
-		transform.FindChild(e2dConstants.COLLIDER_MESH_NAME).transform.localRotation = Quaternion.identity;
-		transform.FindChild(e2dConstants.COLLIDER_MESH_NAME).transform.localScale = Vector3.one;
 	}
 
 	/// Makes sure the sub-objects of the main game object exist. They carry the mesh data.
@@ -83,12 +79,6 @@ public abstract class e2dTerrainMesh
 		if (transform.FindChild(e2dConstants.GRASS_MESH_NAME) == null)
 		{
 			GameObject go = new GameObject(e2dConstants.GRASS_MESH_NAME);
-			go.transform.parent = transform;
-		}
-
-		if (transform.FindChild(e2dConstants.COLLIDER_MESH_NAME) == null)
-		{
-			GameObject go = new GameObject(e2dConstants.COLLIDER_MESH_NAME);
 			go.transform.parent = transform;
 		}
 	}
@@ -113,10 +103,6 @@ public abstract class e2dTerrainMesh
 		meshObject = transform.FindChild(e2dConstants.GRASS_MESH_NAME).gameObject;
 		EnsureMeshFilterExists(meshObject);
 		EnsureMeshRendererExists(meshObject);
-		EnsureScriptsAttached(meshObject);
-
-		meshObject = transform.FindChild(e2dConstants.COLLIDER_MESH_NAME).gameObject;
-		EnsureMeshColliderExists(meshObject);
 		EnsureScriptsAttached(meshObject);
 	}
 
@@ -160,19 +146,9 @@ public abstract class e2dTerrainMesh
 	/// Makes sure the mesh collider in the given game object exists.
 	protected void EnsureMeshColliderExists(GameObject meshObject)
 	{
-		if (meshObject.GetComponent<MeshCollider>() == null)
+		if (meshObject.GetComponent<PolygonCollider2D>() == null)
 		{
-			// NOTE: this mesh can leak if someone destroys the component without explicitly
-			// destroying the mesh
-			Mesh mesh = new Mesh();
-			mesh.name = meshObject.name;
-			meshObject.AddComponent<MeshCollider>().sharedMesh = mesh;
-		}
-		else if (meshObject.GetComponent<MeshCollider>().sharedMesh == null)
-		{
-			Mesh mesh = new Mesh();
-			mesh.name = meshObject.name;
-			meshObject.GetComponent<MeshCollider>().sharedMesh = mesh;
+            meshObject.AddComponent<PolygonCollider2D>().points = new Vector2[0];
 		}
 	}
 
@@ -183,7 +159,7 @@ public abstract class e2dTerrainMesh
 		Object.DestroyImmediate(transform.FindChild(e2dConstants.FILL_MESH_NAME).gameObject);
 		Object.DestroyImmediate(transform.FindChild(e2dConstants.CURVE_MESH_NAME).gameObject);
 		Object.DestroyImmediate(transform.FindChild(e2dConstants.GRASS_MESH_NAME).gameObject);
-		Object.DestroyImmediate(transform.FindChild(e2dConstants.COLLIDER_MESH_NAME).gameObject);
+        Object.DestroyImmediate(transform.GetComponent<PolygonCollider2D>());
 	}
 
 }

@@ -71,8 +71,6 @@ public class e2dConstants
 	public static readonly string CURVE_MESH_NAME = "_curve";
 	/// Names of the sub-object of the main game object holding the grass mesh data.
 	public static readonly string GRASS_MESH_NAME = "_grass";
-	/// Names of the sub-object of the main game object holding the collider mesh data.
-	public static readonly string COLLIDER_MESH_NAME = "_collider";
 
 	/// Initial size of the fill texture.
 	public static readonly float INIT_FILL_TEXTURE_WIDTH = 1;

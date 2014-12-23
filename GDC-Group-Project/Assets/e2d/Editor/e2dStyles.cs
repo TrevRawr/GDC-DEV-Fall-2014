@@ -10,7 +10,7 @@ using System.Collections;
 public class e2dStyles
 {
 	// styles
-	public static GUIStyle TextureField; ///< Object field in the editor layout allowing to select a texture.
+	public static GUIStyle Foldout; ///< Object field in the editor layout allowing to select a texture.
 	public static GUIStyle TextureSelector; ///< An item in the texture selector toolbox.
 	public static GUIStyle InfoText; ///< Normal text in info box.
 	public static GUIStyle InfoHeadline; ///< Headline of the text in info box.
@@ -41,7 +41,8 @@ public class e2dStyles
 		if (sInited) return;
 		sInited = true;
 
-		TextureField = new GUIStyle();
+        Foldout = new GUIStyle("Foldout");
+        Foldout.fontStyle = FontStyle.Bold;
 		//TextureField.fixedWidth = 100;
 		//TextureField.fixedHeight = 76;
 
@@ -117,7 +118,7 @@ public class e2dStyles
 			Popup.stretchWidth = false;
 		}
 
-		Header = new GUIStyle("HeaderLabel");
+        Header = new GUIStyle("HeaderLabel");
 		sInited = sInited && Header != null;
 
 		RectArea = new GUIStyle();

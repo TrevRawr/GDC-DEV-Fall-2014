@@ -11,7 +11,7 @@
 ///  - nothing (0)
 /// Currently the shader supports up to 4 textures but this could be extended by adding more texture parameters.
 
-Shader "e2d/Grass" {
+Shader "Shinigami/Terrain/Grass" {
 Properties {
 	_Grass0 ("Grass 0 (R)", 2D) = "white" {}
 	_Grass1 ("Grass 1 (G)", 2D) = "white" {}
@@ -28,7 +28,7 @@ SubShader {
 	Tags {
 		"Queue" = "Transparent+100"
 		"IgnoreProjector"="False"
-		"RenderType" = "Transparent"
+		"RenderType" = "TransparentCutout"
 	}
 	
 CGPROGRAM
@@ -67,7 +67,7 @@ void surf (Input IN, inout SurfaceOutput o)
 	color += (type==2) * tex2D(_Grass2, uv).rgba;
 	color += (type==3) * tex2D(_Grass3, uv).rgba;
 	o.Albedo = color.rgb;
-	o.Alpha = color.a;
+	o.Alpha = color.a * IN.color.a;
 }
 
 ENDCG  

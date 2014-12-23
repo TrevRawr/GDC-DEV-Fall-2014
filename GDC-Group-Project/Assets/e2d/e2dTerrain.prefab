@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &100000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400000}
-  - 64: {fileID: 6400000}
-  - 114: {fileID: 11400000}
-  m_Layer: 7
-  m_Name: _collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1002 &100001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -72,6 +55,7 @@ GameObject:
   - 4: {fileID: 400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: e2dTerrain
   m_TagString: Untagged
@@ -103,18 +87,6 @@ GameObject:
 --- !u!1002 &100009
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!4 &400000
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400006}
-  m_RootOrder: 0
 --- !u!1002 &400001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -129,7 +101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1002 &400003
 EditorExtensionImpl:
   serializedVersion: 6
@@ -140,11 +112,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -.200000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1002 &400005
 EditorExtensionImpl:
   serializedVersion: 6
@@ -155,10 +127,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.5140076, y: 27.0936489, z: -81.0549316}
+  m_LocalPosition: {x: 257.519989, y: -54.2129784, z: -22.2062988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400000}
   - {fileID: 400002}
   - {fileID: 400004}
   - {fileID: 400008}
@@ -174,11 +145,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: .200000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1002 &400009
 EditorExtensionImpl:
   serializedVersion: 6
@@ -281,33 +252,224 @@ MeshFilter:
 --- !u!1002 &3300005
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!64 &6400000
-MeshCollider:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: 100, y: 5}
+      - {x: 0, y: 5}
+      - {x: 0, y: 13.1014633}
+      - {x: .5, y: 13.0801315}
+      - {x: 1, y: 13.0061493}
+      - {x: 1.5, y: 12.8765793}
+      - {x: 2, y: 12.7213135}
+      - {x: 2.5, y: 12.6599121}
+      - {x: 3, y: 12.8626404}
+      - {x: 3.5, y: 13.3430634}
+      - {x: 4, y: 13.9119644}
+      - {x: 4.5, y: 14.3803482}
+      - {x: 5, y: 14.6943359}
+      - {x: 5.5, y: 14.9471359}
+      - {x: 6, y: 15.2589569}
+      - {x: 6.5, y: 15.6969299}
+      - {x: 7, y: 16.2555237}
+      - {x: 7.5, y: 16.8289719}
+      - {x: 8, y: 17.291748}
+      - {x: 8.5, y: 17.6111221}
+      - {x: 9, y: 17.8456879}
+      - {x: 9.5, y: 18.0364075}
+      - {x: 10, y: 18.2093811}
+      - {x: 10.5, y: 18.3297272}
+      - {x: 11, y: 18.4417343}
+      - {x: 11.5, y: 18.6116409}
+      - {x: 12, y: 18.8776016}
+      - {x: 12.5, y: 19.3033066}
+      - {x: 13, y: 19.7571259}
+      - {x: 13.5, y: 20.0832977}
+      - {x: 14, y: 20.2490311}
+      - {x: 14.5, y: 20.3706131}
+      - {x: 15, y: 20.6132908}
+      - {x: 15.466095, y: 21.0252323}
+      - {x: 16, y: 21.2822132}
+      - {x: 16.5, y: 21.6283665}
+      - {x: 17, y: 21.9610577}
+      - {x: 17.5, y: 22.2452793}
+      - {x: 18, y: 22.443903}
+      - {x: 18.5, y: 22.5943737}
+      - {x: 19, y: 22.6436024}
+      - {x: 19.5, y: 22.5357075}
+      - {x: 20, y: 22.2614765}
+      - {x: 20.5, y: 21.9410343}
+      - {x: 20.7440491, y: 21.7893696}
+      - {x: 21, y: 21.7429218}
+      - {x: 21.5, y: 21.7500248}
+      - {x: 22, y: 21.8268604}
+      - {x: 22.5, y: 21.7865009}
+      - {x: 23, y: 21.5581837}
+      - {x: 23.5, y: 21.2372227}
+      - {x: 24, y: 20.9692097}
+      - {x: 24.5, y: 20.7683353}
+      - {x: 25, y: 20.6012516}
+      - {x: 25.5, y: 20.3445969}
+      - {x: 26, y: 19.955368}
+      - {x: 26.5, y: 19.4939041}
+      - {x: 27, y: 19.047821}
+      - {x: 27.5, y: 18.7328491}
+      - {x: 28, y: 18.5206299}
+      - {x: 28.5, y: 18.2018127}
+      - {x: 29, y: 17.693718}
+      - {x: 29.5, y: 17.1279373}
+      - {x: 30, y: 16.6796646}
+      - {x: 30.5, y: 16.2174072}
+      - {x: 31, y: 15.7001343}
+      - {x: 31.5, y: 15.1802902}
+      - {x: 32, y: 14.8209076}
+      - {x: 32.5, y: 14.5051346}
+      - {x: 33, y: 14.0125885}
+      - {x: 33.5, y: 13.4421768}
+      - {x: 34, y: 12.8653641}
+      - {x: 34.5, y: 12.3643875}
+      - {x: 35, y: 11.8741226}
+      - {x: 35.5, y: 11.4226685}
+      - {x: 36, y: 11.0802689}
+      - {x: 36.5, y: 10.8599091}
+      - {x: 37, y: 10.7054672}
+      - {x: 37.5, y: 10.5879745}
+      - {x: 38, y: 10.6079559}
+      - {x: 38.5, y: 10.732399}
+      - {x: 39, y: 10.8894272}
+      - {x: 39.5, y: 11.1432953}
+      - {x: 40, y: 11.4490814}
+      - {x: 40.5, y: 11.7611465}
+      - {x: 41, y: 12.0876617}
+      - {x: 41.5, y: 12.4390869}
+      - {x: 42, y: 12.8011322}
+      - {x: 42.5, y: 13.0301285}
+      - {x: 43, y: 13.3470688}
+      - {x: 43.5, y: 13.9422073}
+      - {x: 44, y: 14.6177139}
+      - {x: 44.5, y: 15.2847977}
+      - {x: 45, y: 15.8729935}
+      - {x: 45.5, y: 16.3273773}
+      - {x: 46, y: 16.7158432}
+      - {x: 46.5, y: 17.1207199}
+      - {x: 47, y: 17.6805267}
+      - {x: 47.5, y: 18.2510223}
+      - {x: 48, y: 18.6406021}
+      - {x: 48.5, y: 18.8160706}
+      - {x: 49, y: 18.9602737}
+      - {x: 49.5, y: 19.2547226}
+      - {x: 50, y: 19.615715}
+      - {x: 50.5, y: 19.9696579}
+      - {x: 51, y: 20.2782822}
+      - {x: 51.5, y: 20.6101322}
+      - {x: 52, y: 20.8965969}
+      - {x: 52.5, y: 21.0612469}
+      - {x: 53, y: 21.1688251}
+      - {x: 53.5, y: 21.2422466}
+      - {x: 54, y: 21.2984028}
+      - {x: 54.5, y: 21.3694706}
+      - {x: 55, y: 21.5141087}
+      - {x: 55.5, y: 21.7561207}
+      - {x: 56, y: 22.0490322}
+      - {x: 56.5, y: 22.3013096}
+      - {x: 57, y: 22.4175816}
+      - {x: 57.5, y: 22.3431416}
+      - {x: 58, y: 22.012598}
+      - {x: 58.5, y: 21.4223957}
+      - {x: 59, y: 20.6094227}
+      - {x: 59.5, y: 19.6921082}
+      - {x: 60, y: 18.759079}
+      - {x: 60.5, y: 17.7678833}
+      - {x: 61, y: 16.7475433}
+      - {x: 61.5, y: 15.7138672}
+      - {x: 62, y: 14.7064438}
+      - {x: 62.5, y: 13.8005524}
+      - {x: 63, y: 13.0310898}
+      - {x: 63.5, y: 12.3991547}
+      - {x: 64, y: 11.939621}
+      - {x: 64.5, y: 11.6204529}
+      - {x: 65, y: 11.4480896}
+      - {x: 65.5, y: 11.3168106}
+      - {x: 66, y: 11.232254}
+      - {x: 66.5, y: 11.2868805}
+      - {x: 67, y: 11.427002}
+      - {x: 67.5, y: 11.5728378}
+      - {x: 68, y: 11.6506577}
+      - {x: 68.5, y: 11.829422}
+      - {x: 69, y: 12.204361}
+      - {x: 69.5, y: 12.6813278}
+      - {x: 70, y: 13.1925354}
+      - {x: 70.5, y: 13.7895126}
+      - {x: 71, y: 14.5846634}
+      - {x: 71.5, y: 15.3451767}
+      - {x: 72, y: 15.8758545}
+      - {x: 72.5, y: 16.2043457}
+      - {x: 73, y: 16.5118027}
+      - {x: 73.5, y: 16.8640442}
+      - {x: 74, y: 17.1465912}
+      - {x: 74.5, y: 17.2558517}
+      - {x: 75, y: 17.1609268}
+      - {x: 75.5, y: 17.0068741}
+      - {x: 76, y: 16.8844528}
+      - {x: 76.5, y: 16.8298721}
+      - {x: 77, y: 16.8356705}
+      - {x: 77.5, y: 16.8287201}
+      - {x: 78, y: 16.7593307}
+      - {x: 78.5, y: 16.6273041}
+      - {x: 79, y: 16.4249039}
+      - {x: 79.5, y: 16.2758179}
+      - {x: 80, y: 16.1578903}
+      - {x: 80.5, y: 16.1334}
+      - {x: 81, y: 16.2304916}
+      - {x: 81.5, y: 16.3439331}
+      - {x: 82, y: 16.1834717}
+      - {x: 82.5, y: 15.7131729}
+      - {x: 83, y: 15.0729294}
+      - {x: 83.5, y: 14.3494186}
+      - {x: 84, y: 13.6186142}
+      - {x: 84.5, y: 12.9264984}
+      - {x: 85, y: 12.31427}
+      - {x: 85.5, y: 11.7941589}
+      - {x: 86, y: 11.3892822}
+      - {x: 86.5, y: 11.033226}
+      - {x: 87, y: 10.6260834}
+      - {x: 87.5, y: 10.1627274}
+      - {x: 88, y: 9.80142212}
+      - {x: 88.5, y: 9.50589752}
+      - {x: 89, y: 9.1612854}
+      - {x: 89.5, y: 8.7375412}
+      - {x: 90, y: 8.31687927}
+      - {x: 90.5, y: 8.01979828}
+      - {x: 91, y: 7.80576324}
+      - {x: 91.5, y: 7.60089874}
+      - {x: 92, y: 7.40699005}
+      - {x: 92.5, y: 7.34487915}
+      - {x: 93, y: 7.40603638}
+      - {x: 93.5, y: 7.44944}
+      - {x: 94, y: 7.3799057}
+      - {x: 94.5, y: 7.20378113}
+      - {x: 95, y: 6.97529602}
+      - {x: 95.5, y: 6.75894928}
+      - {x: 96, y: 6.56114197}
+      - {x: 96.5, y: 6.40628052}
+      - {x: 97, y: 6.42090607}
+      - {x: 97.5, y: 6.68948364}
+      - {x: 98, y: 7.14754486}
+      - {x: 98.5, y: 7.60381317}
+      - {x: 99, y: 7.90592957}
+      - {x: 99.5, y: 8.03339386}
+      - {x: 100, y: 8.06070709}
 --- !u!1002 &6400001
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 541ebc5a2b68e7443b3f1a319dfd1bfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -409,100 +571,100 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TerrainCurve:
-  - position: {x: 0, y: 13.1014614}
+  - position: {x: 0, y: 13.1014633}
     texture: 0
     grassRatio: 0
-  - position: {x: .5, y: 13.0801334}
+  - position: {x: .5, y: 13.0801315}
     texture: 0
     grassRatio: 0
-  - position: {x: 1, y: 13.0061512}
+  - position: {x: 1, y: 13.0061493}
     texture: 0
     grassRatio: 0
-  - position: {x: 1.5, y: 12.8765812}
+  - position: {x: 1.5, y: 12.8765793}
     texture: 0
     grassRatio: 0
-  - position: {x: 2, y: 12.7213154}
+  - position: {x: 2, y: 12.7213135}
     texture: 0
     grassRatio: 0
-  - position: {x: 2.5, y: 12.659914}
+  - position: {x: 2.5, y: 12.6599121}
     texture: 0
     grassRatio: 0
-  - position: {x: 3, y: 12.8626423}
+  - position: {x: 3, y: 12.8626404}
     texture: 0
     grassRatio: 0
-  - position: {x: 3.5, y: 13.3430614}
+  - position: {x: 3.5, y: 13.3430634}
     texture: 0
     grassRatio: 0
-  - position: {x: 4, y: 13.9119663}
+  - position: {x: 4, y: 13.9119644}
     texture: 0
     grassRatio: 0
-  - position: {x: 4.5, y: 14.3803501}
+  - position: {x: 4.5, y: 14.3803482}
     texture: 0
     grassRatio: 0
-  - position: {x: 5, y: 14.6943378}
+  - position: {x: 5, y: 14.6943359}
     texture: 0
     grassRatio: 0
-  - position: {x: 5.5, y: 14.947134}
+  - position: {x: 5.5, y: 14.9471359}
     texture: 0
     grassRatio: 0
-  - position: {x: 6, y: 15.258955}
+  - position: {x: 6, y: 15.2589569}
     texture: 0
     grassRatio: 0
-  - position: {x: 6.5, y: 15.6969318}
+  - position: {x: 6.5, y: 15.6969299}
     texture: 0
     grassRatio: 0
-  - position: {x: 7, y: 16.2555256}
+  - position: {x: 7, y: 16.2555237}
     texture: 0
     grassRatio: 0
-  - position: {x: 7.5, y: 16.8289738}
+  - position: {x: 7.5, y: 16.8289719}
     texture: 0
     grassRatio: 0
-  - position: {x: 8, y: 17.29175}
+  - position: {x: 8, y: 17.291748}
     texture: 0
     grassRatio: 0
-  - position: {x: 8.5, y: 17.611124}
+  - position: {x: 8.5, y: 17.6111221}
     texture: 0
     grassRatio: 0
-  - position: {x: 9, y: 17.8456898}
+  - position: {x: 9, y: 17.8456879}
     texture: 0
     grassRatio: 0
-  - position: {x: 9.5, y: 18.0364094}
+  - position: {x: 9.5, y: 18.0364075}
     texture: 0
     grassRatio: 0
-  - position: {x: 10, y: 18.2093792}
+  - position: {x: 10, y: 18.2093811}
     texture: 0
     grassRatio: 0
-  - position: {x: 10.5, y: 18.3297253}
+  - position: {x: 10.5, y: 18.3297272}
     texture: 0
     grassRatio: 0
-  - position: {x: 11, y: 18.4417362}
+  - position: {x: 11, y: 18.4417343}
     texture: 0
     grassRatio: 0
-  - position: {x: 11.5, y: 18.6116428}
+  - position: {x: 11.5, y: 18.6116409}
     texture: 0
     grassRatio: 0
-  - position: {x: 12, y: 18.8776035}
+  - position: {x: 12, y: 18.8776016}
     texture: 0
     grassRatio: 0
-  - position: {x: 12.5, y: 19.3033085}
+  - position: {x: 12.5, y: 19.3033066}
     texture: 0
     grassRatio: 0
-  - position: {x: 13, y: 19.7571278}
+  - position: {x: 13, y: 19.7571259}
     texture: 0
     grassRatio: 0
-  - position: {x: 13.5, y: 20.0832996}
+  - position: {x: 13.5, y: 20.0832977}
     texture: 0
     grassRatio: 0
-  - position: {x: 14, y: 20.249033}
+  - position: {x: 14, y: 20.2490311}
     texture: 0
     grassRatio: 0
-  - position: {x: 14.5, y: 20.370615}
+  - position: {x: 14.5, y: 20.3706131}
     texture: 0
     grassRatio: 0
   - position: {x: 15, y: 20.6132908}
     texture: 0
     grassRatio: 0
-  - position: {x: 15.5, y: 20.9402943}
+  - position: {x: 15.466095, y: 21.0252323}
     texture: 0
     grassRatio: 0
   - position: {x: 16, y: 21.2822132}
@@ -535,6 +697,9 @@ MonoBehaviour:
   - position: {x: 20.5, y: 21.9410343}
     texture: 0
     grassRatio: 0
+  - position: {x: 20.7440491, y: 21.7893696}
+    texture: 0
+    grassRatio: 0
   - position: {x: 21, y: 21.7429218}
     texture: 0
     grassRatio: 0
@@ -562,160 +727,160 @@ MonoBehaviour:
   - position: {x: 25, y: 20.6012516}
     texture: 0
     grassRatio: 0
-  - position: {x: 25.5, y: 20.3445988}
+  - position: {x: 25.5, y: 20.3445969}
     texture: 0
     grassRatio: 0
-  - position: {x: 26, y: 19.9553699}
+  - position: {x: 26, y: 19.955368}
     texture: 0
     grassRatio: 0
-  - position: {x: 26.5, y: 19.493906}
+  - position: {x: 26.5, y: 19.4939041}
     texture: 0
     grassRatio: 0
-  - position: {x: 27, y: 19.047823}
+  - position: {x: 27, y: 19.047821}
     texture: 0
     grassRatio: 0
-  - position: {x: 27.5, y: 18.732851}
+  - position: {x: 27.5, y: 18.7328491}
     texture: 0
     grassRatio: 0
-  - position: {x: 28, y: 18.5206318}
+  - position: {x: 28, y: 18.5206299}
     texture: 0
     grassRatio: 0
-  - position: {x: 28.5, y: 18.2018147}
+  - position: {x: 28.5, y: 18.2018127}
     texture: 0
     grassRatio: 0
-  - position: {x: 29, y: 17.6937199}
+  - position: {x: 29, y: 17.693718}
     texture: 0
     grassRatio: 0
-  - position: {x: 29.5, y: 17.1279392}
+  - position: {x: 29.5, y: 17.1279373}
     texture: 0
     grassRatio: 0
-  - position: {x: 30, y: 16.6796665}
+  - position: {x: 30, y: 16.6796646}
     texture: 0
     grassRatio: 0
-  - position: {x: 30.5, y: 16.2174091}
+  - position: {x: 30.5, y: 16.2174072}
     texture: 0
     grassRatio: 0
-  - position: {x: 31, y: 15.7001324}
+  - position: {x: 31, y: 15.7001343}
     texture: 0
     grassRatio: 0
-  - position: {x: 31.5, y: 15.1802883}
+  - position: {x: 31.5, y: 15.1802902}
     texture: 0
     grassRatio: 0
-  - position: {x: 32, y: 14.8209057}
+  - position: {x: 32, y: 14.8209076}
     texture: 0
     grassRatio: 0
-  - position: {x: 32.5, y: 14.5051365}
+  - position: {x: 32.5, y: 14.5051346}
     texture: 0
     grassRatio: 0
-  - position: {x: 33, y: 14.0125866}
+  - position: {x: 33, y: 14.0125885}
     texture: 0
     grassRatio: 0
-  - position: {x: 33.5, y: 13.4421749}
+  - position: {x: 33.5, y: 13.4421768}
     texture: 0
     grassRatio: 0
-  - position: {x: 34, y: 12.865366}
+  - position: {x: 34, y: 12.8653641}
     texture: 0
     grassRatio: 0
-  - position: {x: 34.5, y: 12.3643856}
+  - position: {x: 34.5, y: 12.3643875}
     texture: 0
     grassRatio: 0
-  - position: {x: 35, y: 11.8741245}
+  - position: {x: 35, y: 11.8741226}
     texture: 0
     grassRatio: 0
-  - position: {x: 35.5, y: 11.4226704}
+  - position: {x: 35.5, y: 11.4226685}
     texture: 0
     grassRatio: 0
-  - position: {x: 36, y: 11.080267}
+  - position: {x: 36, y: 11.0802689}
     texture: 0
     grassRatio: 0
-  - position: {x: 36.5, y: 10.859911}
+  - position: {x: 36.5, y: 10.8599091}
     texture: 0
     grassRatio: 0
-  - position: {x: 37, y: 10.7054691}
+  - position: {x: 37, y: 10.7054672}
     texture: 0
     grassRatio: 0
-  - position: {x: 37.5, y: 10.5879765}
+  - position: {x: 37.5, y: 10.5879745}
     texture: 0
     grassRatio: 0
-  - position: {x: 38, y: 10.6079578}
+  - position: {x: 38, y: 10.6079559}
     texture: 0
     grassRatio: 0
-  - position: {x: 38.5, y: 10.7324009}
+  - position: {x: 38.5, y: 10.732399}
     texture: 0
     grassRatio: 0
-  - position: {x: 39, y: 10.8894291}
+  - position: {x: 39, y: 10.8894272}
     texture: 0
     grassRatio: 0
-  - position: {x: 39.5, y: 11.1432972}
+  - position: {x: 39.5, y: 11.1432953}
     texture: 0
     grassRatio: 0
-  - position: {x: 40, y: 11.4490795}
+  - position: {x: 40, y: 11.4490814}
     texture: 0
     grassRatio: 0
-  - position: {x: 40.5, y: 11.7611485}
+  - position: {x: 40.5, y: 11.7611465}
     texture: 0
     grassRatio: 0
-  - position: {x: 41, y: 12.0876637}
+  - position: {x: 41, y: 12.0876617}
     texture: 0
     grassRatio: 0
-  - position: {x: 41.5, y: 12.4390888}
+  - position: {x: 41.5, y: 12.4390869}
     texture: 0
     grassRatio: 0
-  - position: {x: 42, y: 12.8011341}
+  - position: {x: 42, y: 12.8011322}
     texture: 0
     grassRatio: 0
-  - position: {x: 42.5, y: 13.0301304}
+  - position: {x: 42.5, y: 13.0301285}
     texture: 0
     grassRatio: 0
-  - position: {x: 43, y: 13.3470669}
+  - position: {x: 43, y: 13.3470688}
     texture: 0
     grassRatio: 0
-  - position: {x: 43.5, y: 13.9422054}
+  - position: {x: 43.5, y: 13.9422073}
     texture: 0
     grassRatio: 0
-  - position: {x: 44, y: 14.6177158}
+  - position: {x: 44, y: 14.6177139}
     texture: 0
     grassRatio: 0
-  - position: {x: 44.5, y: 15.2847996}
+  - position: {x: 44.5, y: 15.2847977}
     texture: 0
     grassRatio: 0
-  - position: {x: 45, y: 15.8729954}
+  - position: {x: 45, y: 15.8729935}
     texture: 0
     grassRatio: 0
-  - position: {x: 45.5, y: 16.3273792}
+  - position: {x: 45.5, y: 16.3273773}
     texture: 0
     grassRatio: 0
-  - position: {x: 46, y: 16.7158413}
+  - position: {x: 46, y: 16.7158432}
     texture: 0
     grassRatio: 0
-  - position: {x: 46.5, y: 17.120718}
+  - position: {x: 46.5, y: 17.1207199}
     texture: 0
     grassRatio: 0
-  - position: {x: 47, y: 17.6805286}
+  - position: {x: 47, y: 17.6805267}
     texture: 0
     grassRatio: 0
-  - position: {x: 47.5, y: 18.2510242}
+  - position: {x: 47.5, y: 18.2510223}
     texture: 0
     grassRatio: 0
-  - position: {x: 48, y: 18.640604}
+  - position: {x: 48, y: 18.6406021}
     texture: 0
     grassRatio: 0
-  - position: {x: 48.5, y: 18.8160686}
+  - position: {x: 48.5, y: 18.8160706}
     texture: 0
     grassRatio: 0
-  - position: {x: 49, y: 18.9602718}
+  - position: {x: 49, y: 18.9602737}
     texture: 0
     grassRatio: 0
-  - position: {x: 49.5, y: 19.2547245}
+  - position: {x: 49.5, y: 19.2547226}
     texture: 0
     grassRatio: 0
-  - position: {x: 50, y: 19.6157169}
+  - position: {x: 50, y: 19.615715}
     texture: 0
     grassRatio: 0
-  - position: {x: 50.5, y: 19.969656}
+  - position: {x: 50.5, y: 19.9696579}
     texture: 0
     grassRatio: 0
-  - position: {x: 51, y: 20.2782841}
+  - position: {x: 51, y: 20.2782822}
     texture: 0
     grassRatio: 0
   - position: {x: 51.5, y: 20.6101322}
@@ -766,259 +931,261 @@ MonoBehaviour:
   - position: {x: 59, y: 20.6094227}
     texture: 0
     grassRatio: 0
-  - position: {x: 59.5, y: 19.6921101}
+  - position: {x: 59.5, y: 19.6921082}
     texture: 0
     grassRatio: 0
-  - position: {x: 60, y: 18.7590809}
+  - position: {x: 60, y: 18.759079}
     texture: 0
     grassRatio: 0
-  - position: {x: 60.5, y: 17.7678852}
+  - position: {x: 60.5, y: 17.7678833}
     texture: 0
     grassRatio: 0
-  - position: {x: 61, y: 16.7475414}
+  - position: {x: 61, y: 16.7475433}
     texture: 0
     grassRatio: 0
-  - position: {x: 61.5, y: 15.7138691}
+  - position: {x: 61.5, y: 15.7138672}
     texture: 0
     grassRatio: 0
-  - position: {x: 62, y: 14.7064419}
+  - position: {x: 62, y: 14.7064438}
     texture: 0
     grassRatio: 0
-  - position: {x: 62.5, y: 13.8005543}
+  - position: {x: 62.5, y: 13.8005524}
     texture: 0
     grassRatio: 0
-  - position: {x: 63, y: 13.0310917}
+  - position: {x: 63, y: 13.0310898}
     texture: 0
     grassRatio: 0
-  - position: {x: 63.5, y: 12.3991566}
+  - position: {x: 63.5, y: 12.3991547}
     texture: 0
     grassRatio: 0
-  - position: {x: 64, y: 11.9396229}
+  - position: {x: 64, y: 11.939621}
     texture: 0
     grassRatio: 0
-  - position: {x: 64.5, y: 11.620451}
+  - position: {x: 64.5, y: 11.6204529}
     texture: 0
     grassRatio: 0
-  - position: {x: 65, y: 11.4480915}
+  - position: {x: 65, y: 11.4480896}
     texture: 0
     grassRatio: 0
-  - position: {x: 65.5, y: 11.3168087}
+  - position: {x: 65.5, y: 11.3168106}
     texture: 0
     grassRatio: 0
-  - position: {x: 66, y: 11.2322559}
+  - position: {x: 66, y: 11.232254}
     texture: 0
     grassRatio: 0
-  - position: {x: 66.5, y: 11.2868824}
+  - position: {x: 66.5, y: 11.2868805}
     texture: 0
     grassRatio: 0
-  - position: {x: 67, y: 11.427}
+  - position: {x: 67, y: 11.427002}
     texture: 0
     grassRatio: 0
-  - position: {x: 67.5, y: 11.5728397}
+  - position: {x: 67.5, y: 11.5728378}
     texture: 0
     grassRatio: 0
-  - position: {x: 68, y: 11.6506596}
+  - position: {x: 68, y: 11.6506577}
     texture: 0
     grassRatio: 0
-  - position: {x: 68.5, y: 11.8294201}
+  - position: {x: 68.5, y: 11.829422}
     texture: 0
     grassRatio: 0
-  - position: {x: 69, y: 12.2043629}
+  - position: {x: 69, y: 12.204361}
     texture: 0
     grassRatio: 0
-  - position: {x: 69.5, y: 12.6813259}
+  - position: {x: 69.5, y: 12.6813278}
     texture: 0
     grassRatio: 0
-  - position: {x: 70, y: 13.1925373}
+  - position: {x: 70, y: 13.1925354}
     texture: 0
     grassRatio: 0
-  - position: {x: 70.5, y: 13.7895145}
+  - position: {x: 70.5, y: 13.7895126}
     texture: 0
     grassRatio: 0
-  - position: {x: 71, y: 14.5846653}
+  - position: {x: 71, y: 14.5846634}
     texture: 0
     grassRatio: 0
-  - position: {x: 71.5, y: 15.3451786}
+  - position: {x: 71.5, y: 15.3451767}
     texture: 0
     grassRatio: 0
-  - position: {x: 72, y: 15.8758564}
+  - position: {x: 72, y: 15.8758545}
     texture: 0
     grassRatio: 0
-  - position: {x: 72.5, y: 16.2043476}
+  - position: {x: 72.5, y: 16.2043457}
     texture: 0
     grassRatio: 0
-  - position: {x: 73, y: 16.5118008}
+  - position: {x: 73, y: 16.5118027}
     texture: 0
     grassRatio: 0
-  - position: {x: 73.5, y: 16.8640461}
+  - position: {x: 73.5, y: 16.8640442}
     texture: 0
     grassRatio: 0
-  - position: {x: 74, y: 17.1465931}
+  - position: {x: 74, y: 17.1465912}
     texture: 0
     grassRatio: 0
-  - position: {x: 74.5, y: 17.2558537}
+  - position: {x: 74.5, y: 17.2558517}
     texture: 0
     grassRatio: 0
-  - position: {x: 75, y: 17.1609249}
+  - position: {x: 75, y: 17.1609268}
     texture: 0
     grassRatio: 0
-  - position: {x: 75.5, y: 17.006876}
+  - position: {x: 75.5, y: 17.0068741}
     texture: 0
     grassRatio: 0
-  - position: {x: 76, y: 16.8844547}
+  - position: {x: 76, y: 16.8844528}
     texture: 0
     grassRatio: 0
-  - position: {x: 76.5, y: 16.8298702}
+  - position: {x: 76.5, y: 16.8298721}
     texture: 0
     grassRatio: 0
-  - position: {x: 77, y: 16.8356724}
+  - position: {x: 77, y: 16.8356705}
     texture: 0
     grassRatio: 0
-  - position: {x: 77.5, y: 16.828722}
+  - position: {x: 77.5, y: 16.8287201}
     texture: 0
     grassRatio: 0
-  - position: {x: 78, y: 16.7593327}
+  - position: {x: 78, y: 16.7593307}
     texture: 0
     grassRatio: 0
-  - position: {x: 78.5, y: 16.627306}
+  - position: {x: 78.5, y: 16.6273041}
     texture: 0
     grassRatio: 0
-  - position: {x: 79, y: 16.4249058}
+  - position: {x: 79, y: 16.4249039}
     texture: 0
     grassRatio: 0
-  - position: {x: 79.5, y: 16.2758198}
+  - position: {x: 79.5, y: 16.2758179}
     texture: 0
     grassRatio: 0
-  - position: {x: 80, y: 16.1578922}
+  - position: {x: 80, y: 16.1578903}
     texture: 0
     grassRatio: 0
-  - position: {x: 80.5, y: 16.1334019}
+  - position: {x: 80.5, y: 16.1334}
     texture: 0
     grassRatio: 0
-  - position: {x: 81, y: 16.2304897}
+  - position: {x: 81, y: 16.2304916}
     texture: 0
     grassRatio: 0
-  - position: {x: 81.5, y: 16.343935}
+  - position: {x: 81.5, y: 16.3439331}
     texture: 0
     grassRatio: 0
-  - position: {x: 82, y: 16.1834736}
+  - position: {x: 82, y: 16.1834717}
     texture: 0
     grassRatio: 0
-  - position: {x: 82.5, y: 15.7131748}
+  - position: {x: 82.5, y: 15.7131729}
     texture: 0
     grassRatio: 0
-  - position: {x: 83, y: 15.0729275}
+  - position: {x: 83, y: 15.0729294}
     texture: 0
     grassRatio: 0
-  - position: {x: 83.5, y: 14.3494205}
+  - position: {x: 83.5, y: 14.3494186}
     texture: 0
     grassRatio: 0
-  - position: {x: 84, y: 13.6186123}
+  - position: {x: 84, y: 13.6186142}
     texture: 0
     grassRatio: 0
-  - position: {x: 84.5, y: 12.9265003}
+  - position: {x: 84.5, y: 12.9264984}
     texture: 0
     grassRatio: 0
-  - position: {x: 85, y: 12.3142719}
+  - position: {x: 85, y: 12.31427}
     texture: 0
     grassRatio: 0
-  - position: {x: 85.5, y: 11.7941608}
+  - position: {x: 85.5, y: 11.7941589}
     texture: 0
     grassRatio: 0
-  - position: {x: 86, y: 11.3892841}
+  - position: {x: 86, y: 11.3892822}
     texture: 0
     grassRatio: 0
-  - position: {x: 86.5, y: 11.0332241}
+  - position: {x: 86.5, y: 11.033226}
     texture: 0
     grassRatio: 0
-  - position: {x: 87, y: 10.6260853}
+  - position: {x: 87, y: 10.6260834}
     texture: 0
     grassRatio: 0
-  - position: {x: 87.5, y: 10.1627293}
+  - position: {x: 87.5, y: 10.1627274}
     texture: 0
     grassRatio: 0
-  - position: {x: 88, y: 9.80142403}
+  - position: {x: 88, y: 9.80142212}
     texture: 0
     grassRatio: 0
-  - position: {x: 88.5, y: 9.50589943}
+  - position: {x: 88.5, y: 9.50589752}
     texture: 0
     grassRatio: 0
-  - position: {x: 89, y: 9.16128349}
+  - position: {x: 89, y: 9.1612854}
     texture: 0
     grassRatio: 0
-  - position: {x: 89.5, y: 8.73754311}
+  - position: {x: 89.5, y: 8.7375412}
     texture: 0
     grassRatio: 0
-  - position: {x: 90, y: 8.31688118}
+  - position: {x: 90, y: 8.31687927}
     texture: 0
     grassRatio: 0
-  - position: {x: 90.5, y: 8.01979637}
+  - position: {x: 90.5, y: 8.01979828}
     texture: 0
     grassRatio: 0
-  - position: {x: 91, y: 7.80576134}
+  - position: {x: 91, y: 7.80576324}
     texture: 0
     grassRatio: 0
-  - position: {x: 91.5, y: 7.60090065}
+  - position: {x: 91.5, y: 7.60089874}
     texture: 0
     grassRatio: 0
-  - position: {x: 92, y: 7.40698814}
+  - position: {x: 92, y: 7.40699005}
     texture: 0
     grassRatio: 0
-  - position: {x: 92.5, y: 7.34487724}
+  - position: {x: 92.5, y: 7.34487915}
     texture: 0
     grassRatio: 0
-  - position: {x: 93, y: 7.40603447}
+  - position: {x: 93, y: 7.40603638}
     texture: 0
     grassRatio: 0
-  - position: {x: 93.5, y: 7.4494381}
+  - position: {x: 93.5, y: 7.44944}
     texture: 0
     grassRatio: 0
-  - position: {x: 94, y: 7.37990761}
+  - position: {x: 94, y: 7.3799057}
     texture: 0
     grassRatio: 0
-  - position: {x: 94.5, y: 7.20377922}
+  - position: {x: 94.5, y: 7.20378113}
     texture: 0
     grassRatio: 0
-  - position: {x: 95, y: 6.97529411}
+  - position: {x: 95, y: 6.97529602}
     texture: 0
     grassRatio: 0
-  - position: {x: 95.5, y: 6.75894737}
+  - position: {x: 95.5, y: 6.75894928}
     texture: 0
     grassRatio: 0
-  - position: {x: 96, y: 6.56114388}
+  - position: {x: 96, y: 6.56114197}
     texture: 0
     grassRatio: 0
-  - position: {x: 96.5, y: 6.40627861}
+  - position: {x: 96.5, y: 6.40628052}
     texture: 0
     grassRatio: 0
-  - position: {x: 97, y: 6.42090797}
+  - position: {x: 97, y: 6.42090607}
     texture: 0
     grassRatio: 0
-  - position: {x: 97.5, y: 6.68948174}
+  - position: {x: 97.5, y: 6.68948364}
     texture: 0
     grassRatio: 0
-  - position: {x: 98, y: 7.14754677}
+  - position: {x: 98, y: 7.14754486}
     texture: 0
     grassRatio: 0
-  - position: {x: 98.5, y: 7.60381508}
+  - position: {x: 98.5, y: 7.60381317}
     texture: 0
     grassRatio: 0
-  - position: {x: 99, y: 7.90593147}
+  - position: {x: 99, y: 7.90592957}
     texture: 0
     grassRatio: 0
-  - position: {x: 99.5, y: 8.03339195}
+  - position: {x: 99.5, y: 8.03339386}
     texture: 0
     grassRatio: 0
-  - position: {x: 100, y: 8.06070518}
+  - position: {x: 100, y: 8.06070709}
     texture: 0
     grassRatio: 0
   TerrainBoundary:
-    serializedVersion: 2
     x: -98.6776733
     y: 5
     width: 321.861938
     height: 98.25177
   FillTexture: {fileID: 2800000, guid: 3369ce8296fe1c240803fed4c23d78b2, type: 3}
+  NormalFillTexture: {fileID: 0}
+  Specular: 0
+  Rimlight: 0
   FillTextureTileWidth: 9.23999977
   FillTextureTileHeight: 4.44000006
   FillTextureTileOffsetX: 0
@@ -1026,17 +1193,38 @@ MonoBehaviour:
   CurveClosed: 0
   CurveTextures:
   - texture: {fileID: 2800000, guid: c7a4e6a93dbc5cd4ab4579b9f4cdf9fd, type: 3}
+    normal: {fileID: 0}
     size: {x: 1, y: 1}
     fixedAngle: 0
     fadeThreshold: .300000012
+    fadePow: 0
+    Specular: 0
+    Rimlight: 0
+    Cutoff: 0
+    Offset: 0
   GrassTextures:
   - texture: {fileID: 2800000, guid: c7a4e6a93dbc5cd4ab4579b9f4cdf9fd, type: 3}
+    normal: {fileID: 0}
     size: {x: 1, y: 1}
     sizeRandomness: {x: .5, y: .5}
     waveAmplitude: .5
+    SlopeAlign: 0
+    RandomOffset: 0
+    RandomZOffset: 0
+    RandomRotation: 0
+    Offset: 0
+    fadeThreshold: 0
+    Cutoff: 0
+    Specular: 0
+    Rimlight: 0
   GrassWaveSpeed: 1
   GrassScatterRatio: 0
+  GrassOffset: .200000003
+  FillOffset: -.200000003
   PlasticEdges: 1
+  ReplacementFillShader: {fileID: 0}
+  ReplacementCurveShader: {fileID: 0}
+  ReplacementGrassShader: {fileID: 0}
 --- !u!1002 &11400009
 EditorExtensionImpl:
   serializedVersion: 6

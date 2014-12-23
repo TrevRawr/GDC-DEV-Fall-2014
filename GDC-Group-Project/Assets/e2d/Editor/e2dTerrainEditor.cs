@@ -26,6 +26,27 @@ public class e2dTerrainEditor : Editor
 	/// Currently selected texture.
 	public int SelectedTexture;
 
+    static bool _ShowShaderProperties = true, _ShowBrushProperties = true, _ShowPlacementProperties = true, _ShowGlobalProperties = true;
+    static bool ShowShaderProperties
+    {
+        get { return _ShowShaderProperties; }
+        set { if (value != _ShowShaderProperties) { _ShowShaderProperties = value; EditorPrefs.SetBool("ShowShaderProperties", _ShowShaderProperties); } }
+    }
+    static bool ShowBrushProperties
+    {
+        get { return _ShowBrushProperties; }
+        set { if (value != _ShowBrushProperties) { _ShowBrushProperties = value; EditorPrefs.SetBool("ShowBrushProperties", _ShowBrushProperties); } }
+    }
+    static bool ShowPlacementProperties
+    {
+        get { return _ShowPlacementProperties; }
+        set { if (value != _ShowPlacementProperties) { _ShowPlacementProperties = value; EditorPrefs.SetBool("ShowPlacementProperties", _ShowPlacementProperties); } }
+    }
+    static bool ShowGlobalProperties
+    {
+        get { return _ShowGlobalProperties; }
+        set { if (value != _ShowGlobalProperties) { _ShowGlobalProperties = value; EditorPrefs.SetBool("ShowGlobalProperties", _ShowGlobalProperties); } }
+    }
 
 #region Properties
 	
@@ -68,14 +89,25 @@ public class e2dTerrainEditor : Editor
 
 #region Initialization
 
+    void OnEnable()
+    {
+        ShowShaderProperties = EditorPrefs.GetBool("ShowShaderProperties", true);
+        ShowBrushProperties = EditorPrefs.GetBool("ShowBrushProperties", true);
+        ShowPlacementProperties = EditorPrefs.GetBool("ShowPlacementProperties", true);
+        ShowGlobalProperties = EditorPrefs.GetBool("ShowGlobalProperties", true);
+    }
+
 	/// Inits the editor.
 	public e2dTerrainEditor()
 	{
 		mSceneEditor = new e2dTerrainSceneEditor(this);
 
-		// setup the undo handler
-		FieldInfo undoCallback = typeof(EditorApplication).GetField("undoRedoPerformed", BindingFlags.NonPublic | BindingFlags.Static);
-		undoCallback.SetValue(null, (EditorApplication.CallbackFunction)OnUndoRedo);
+        Undo.undoRedoPerformed += (Undo.UndoRedoCallback)OnUndoRedo;
+
+        ShowShaderProperties = EditorPrefs.GetBool("ShowShaderProperties", true);
+        ShowBrushProperties = EditorPrefs.GetBool("ShowBrushProperties", true);
+        ShowPlacementProperties = EditorPrefs.GetBool("ShowPlacementProperties", true);
+        ShowGlobalProperties = EditorPrefs.GetBool("ShowGlobalProperties", true);
 	}
 
 #endregion
@@ -155,7 +187,6 @@ public class e2dTerrainEditor : Editor
 			EditorGUILayout.Separator();
 		}
 
-		EditorGUIUtility.LookLikeInspector();
 
 
 		if (e2dUtils.DEBUG_INSPECTOR)
@@ -234,7 +265,7 @@ public class e2dTerrainEditor : Editor
 
 		if (GUILayout.Button(e2dStrings.LABEL_RESET_TERRAIN, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_RESET_TERRAIN);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_RESET_TERRAIN);
 			Terrain.Reset();
 			SceneView.RepaintAll();
 		}
@@ -247,6 +278,7 @@ public class e2dTerrainEditor : Editor
 			Terrain.RebuildAllMeshes();
 		}
 
+
 		EditorGUILayout.EndHorizontal();
 
 
@@ -254,7 +286,7 @@ public class e2dTerrainEditor : Editor
 		bool close = EditorGUILayout.Toggle(e2dStrings.LABEL_CURVE_CLOSED, Terrain.CurveClosed);
 		if (GUI.changed)
 		{
-			Undo.RegisterUndo(Terrain, close ? e2dStrings.UNDO_CLOSE_CURVE : e2dStrings.UNDO_OPEN_CURVE);
+            Undo.RecordObject(Terrain, close ? e2dStrings.UNDO_CLOSE_CURVE : e2dStrings.UNDO_OPEN_CURVE);
 			Terrain.CurveClosed = close;
 			Terrain.FixCurve();
 			Terrain.CurveMesh.UpdateControlTextures();
@@ -266,11 +298,12 @@ public class e2dTerrainEditor : Editor
 		bool plastic = EditorGUILayout.Toggle(e2dStrings.LABEL_PLASTIC_EDGES, Terrain.PlasticEdges);
 		if (GUI.changed)
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_TERRAIN_PROPERTIES);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_TERRAIN_PROPERTIES);
 			Terrain.PlasticEdges = plastic;
 			Terrain.RebuildAllMeshes();
 			EditorUtility.SetDirty(Terrain);
 		}
+
 	}
 
 	/// Tool for adjusting the height of a group of nodes using a brush in the scene window.
@@ -280,103 +313,186 @@ public class e2dTerrainEditor : Editor
 	}
 
 	/// Tool for setting the parameters of the filling of the terrain inside and the terrain boundary.
-	private void DrawFillTextureTool()
-	{
-		GUI.changed = false;
-		Texture fillTexture = (Texture)EditorGUILayout.ObjectField(e2dStrings.LABEL_FILL_TEXTURE, Terrain.FillTexture, typeof(Texture), !EditorUtility.IsPersistent(target));
-		if (GUI.changed)
-		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_FILL_TEXTURE);
-			Terrain.FillTexture = fillTexture;
-			Terrain.FillMesh.RebuildMaterial();
-			EditorUtility.SetDirty(Terrain);
-		}
+    private void DrawFillTextureTool()
+    {
+        GUI.changed = false;
+        Terrain.ReplacementFillShader = EditorGUILayout.ObjectField("Replacement Shader", Terrain.ReplacementFillShader, typeof(Shader), !EditorUtility.IsPersistent(target)) as Shader;
+        if (GUI.changed)
+        {
+            Undo.RecordObject(Terrain, "Changed Terrain Fill Shader");
+            Terrain.FillMesh.RebuildMaterial();
+            EditorUtility.SetDirty(Terrain);
+        }
 
-		GUI.changed = false;
-		float fillTextureTileWidth = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_WIDTH, Terrain.FillTextureTileWidth, e2dConstants.FILL_TEXTURE_SIZE_MIN, e2dConstants.FILL_TEXTURE_SIZE_MAX);
-		float fillTextureTileHeight = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_HEIGHT, Terrain.FillTextureTileHeight, e2dConstants.FILL_TEXTURE_SIZE_MIN, e2dConstants.FILL_TEXTURE_SIZE_MAX);
-		float fillTextureTileOffsetX = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_OFFSET_X, Terrain.FillTextureTileOffsetX, 0, e2dConstants.FILL_TEXTURE_OFFSET_MAX);
-		float fillTextureTileOffsetY = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_OFFSET_Y, Terrain.FillTextureTileOffsetY, 0, e2dConstants.FILL_TEXTURE_OFFSET_MAX);
-		if (GUI.changed)
-		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_FILL_TEXTURE);
-			Terrain.FillTextureTileWidth = fillTextureTileWidth;
-			Terrain.FillTextureTileHeight = fillTextureTileHeight;
-			Terrain.FillTextureTileOffsetX = fillTextureTileOffsetX;
-			Terrain.FillTextureTileOffsetY = fillTextureTileOffsetY;
-			Terrain.FillMesh.RebuildMesh();
-			EditorUtility.SetDirty(Terrain);
-		}
+        GUI.changed = false;
+        ShowShaderProperties = EditorGUILayout.Foldout(ShowShaderProperties, "Shader Parameters", e2dStyles.Foldout);
+        if (ShowShaderProperties)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.BeginHorizontal();
+            Texture fillTexture = (Texture)EditorGUILayout.ObjectField(e2dStrings.LABEL_FILL_TEXTURE, Terrain.FillTexture, typeof(Texture), !EditorUtility.IsPersistent(target));
+            Terrain.NormalFillTexture = (Texture)EditorGUILayout.ObjectField("Normal", Terrain.NormalFillTexture, typeof(Texture), !EditorUtility.IsPersistent(target));
+            EditorGUILayout.EndHorizontal();
+            Terrain.Specular = EditorGUILayout.Slider("Specular Brightness", Terrain.Specular, 0, 1);
+            Terrain.Rimlight = EditorGUILayout.Slider("Rim Power", Terrain.Rimlight, 0.1f, 20);
+            if (GUI.changed)
+            {
+                Undo.RecordObject(Terrain, e2dStrings.UNDO_FILL_TEXTURE);
+                Terrain.FillTexture = fillTexture;
+                Terrain.FillMesh.RebuildMaterial();
+                EditorUtility.SetDirty(Terrain);
+            }
+            EditorGUI.indentLevel--;
+        }
 
-		GUI.changed = false;
-		Rect terrainBoundary = e2dEditorUtils.RectField(e2dStrings.LABEL_TERRAIN_BOUNDARY, Terrain.TerrainBoundary);
-		if (GUI.changed)
-		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_BOUNDARY);
-			Terrain.TerrainBoundary = terrainBoundary;
-			Terrain.FixBoundary();
-			Terrain.FillMesh.RebuildMesh();
-			EditorUtility.SetDirty(Terrain);
-		}
-	}
+        ShowPlacementProperties = EditorGUILayout.Foldout(ShowPlacementProperties, "Placement Parameters", e2dStyles.Foldout);
+        if (ShowPlacementProperties)
+        {
+            EditorGUI.indentLevel++;
+            GUI.changed = false;
+            float fillTextureTileWidth = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_WIDTH, Terrain.FillTextureTileWidth, e2dConstants.FILL_TEXTURE_SIZE_MIN, e2dConstants.FILL_TEXTURE_SIZE_MAX);
+            float fillTextureTileHeight = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_HEIGHT, Terrain.FillTextureTileHeight, e2dConstants.FILL_TEXTURE_SIZE_MIN, e2dConstants.FILL_TEXTURE_SIZE_MAX);
+            float fillTextureTileOffsetX = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_OFFSET_X, Terrain.FillTextureTileOffsetX, 0, e2dConstants.FILL_TEXTURE_OFFSET_MAX);
+            float fillTextureTileOffsetY = EditorGUILayout.Slider(e2dStrings.LABEL_FILL_TEXTURE_TILE_OFFSET_Y, Terrain.FillTextureTileOffsetY, 0, e2dConstants.FILL_TEXTURE_OFFSET_MAX);
+            if (GUI.changed)
+            {
+                Undo.RecordObject(Terrain, e2dStrings.UNDO_FILL_TEXTURE);
+                Terrain.FillTextureTileWidth = fillTextureTileWidth;
+                Terrain.FillTextureTileHeight = fillTextureTileHeight;
+                Terrain.FillTextureTileOffsetX = fillTextureTileOffsetX;
+                Terrain.FillTextureTileOffsetY = fillTextureTileOffsetY;
+                Terrain.FillMesh.RebuildMesh();
+                EditorUtility.SetDirty(Terrain);
+            }
+            EditorGUI.indentLevel--;
+        }
+
+        GUI.changed = false;
+        Terrain.FillOffset = EditorGUILayout.Slider("Fill Z-Offset", Terrain.FillOffset, -5, 5);
+        if (GUI.changed)
+        {
+            Undo.RecordObject(Terrain, "Change e2dTerrain Fill Offset");
+            Terrain.FillMesh.RebuildMesh();
+            EditorUtility.SetDirty(Terrain);
+        }
+
+        ShowGlobalProperties = EditorGUILayout.Foldout(ShowGlobalProperties, "Global Parameters", e2dStyles.Foldout);
+        if (ShowGlobalProperties)
+        {
+            EditorGUI.indentLevel++;
+            GUI.changed = false;
+            Rect terrainBoundary = EditorGUILayout.RectField(e2dStrings.LABEL_TERRAIN_BOUNDARY, Terrain.TerrainBoundary);
+            if (GUI.changed)
+            {
+                Undo.RecordObject(Terrain, e2dStrings.UNDO_BOUNDARY);
+                Terrain.TerrainBoundary = terrainBoundary;
+                Terrain.FixBoundary();
+                Terrain.FillMesh.RebuildMesh();
+                EditorUtility.SetDirty(Terrain);
+            }
+            EditorGUI.indentLevel--;
+        }
+
+    }
 	
 	/// Tool for texturing the terrain surface using a brush.
-	private void DrawCurveTextureTool()
-	{
-		DrawBrush(false, false);
+    private void DrawCurveTextureTool()
+    {
+        GUI.changed = false;
+        Terrain.ReplacementCurveShader = EditorGUILayout.ObjectField("Replacement Shader", Terrain.ReplacementCurveShader, typeof(Shader), !EditorUtility.IsPersistent(target)) as Shader;
+        if (GUI.changed)
+        {
+            Undo.RecordObject(Terrain, "Changed Terrain Curve Shader");
+            Terrain.CurveMesh.RebuildMaterial();
+            EditorUtility.SetDirty(Terrain);
+        }
+        ShowBrushProperties = EditorGUILayout.Foldout(ShowBrushProperties, e2dStrings.LABEL_BRUSH, e2dStyles.Foldout);
+        if (ShowBrushProperties)
+        {
+            EditorGUI.indentLevel++;
+            DrawBrush(false, false);
+            EditorGUI.indentLevel--;
+        }
 
-		DrawCurveTextureSelector();
+        DrawCurveTextureSelector();
 
-		bool rebuildMaterial = false;
-		bool rebuildMesh = false;
+        bool rebuildMaterial = false;
+        bool rebuildMesh = false;
 
-		e2dCurveTexture selectedTexture = new e2dCurveTexture(Terrain.CurveTextures[SelectedTexture]);
+        e2dCurveTexture selectedTexture = new e2dCurveTexture(Terrain.CurveTextures[SelectedTexture]);
 
-		// texture
-		EditorGUILayout.BeginHorizontal(e2dStyles.TextureField);
-		GUI.changed = false;
-		EditorGUILayout.PrefixLabel(e2dStrings.LABEL_TEXTURE);
-		selectedTexture.texture = (Texture)EditorGUILayout.ObjectField(selectedTexture.texture, typeof(Texture), !EditorUtility.IsPersistent(target));
-		GUILayoutUtility.GetRect(70, 0, GUI.skin.label);
-		if (GUI.changed) rebuildMaterial = true;
-		EditorGUILayout.EndHorizontal();
+        // texture
+        GUI.changed = false;
+        ShowShaderProperties = EditorGUILayout.Foldout(ShowShaderProperties, "Shader Parameters", e2dStyles.Foldout);
+        if (ShowShaderProperties)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.BeginHorizontal();
+            selectedTexture.texture = (Texture)EditorGUILayout.ObjectField(e2dStrings.LABEL_TEXTURE, selectedTexture.texture, typeof(Texture), !EditorUtility.IsPersistent(target));
+            selectedTexture.normal = (Texture)EditorGUILayout.ObjectField("Normal", selectedTexture.normal, typeof(Texture), !EditorUtility.IsPersistent(target));
+            EditorGUILayout.EndHorizontal();
+            if (GUI.changed) rebuildMaterial = true;
+            GUI.changed = false;
+            selectedTexture.Specular = EditorGUILayout.Slider("Specular Brightness", selectedTexture.Specular, 0, 1);
+            selectedTexture.Rimlight = EditorGUILayout.Slider("Rim Power", selectedTexture.Rimlight, 0.1f, 20);
+            selectedTexture.Cutoff = EditorGUILayout.Slider("Cutoff", selectedTexture.Cutoff, 0.1f, 0.9f);
+            if (GUI.changed) rebuildMesh = true;
+            EditorGUI.indentLevel--;
+        }
+        
 
-		// size
-		GUI.changed = false;
-		selectedTexture.size.x = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_WIDTH, selectedTexture.size.x, e2dConstants.TEXTURE_WIDTH_MIN, e2dConstants.TEXTURE_WIDTH_MAX);
-		selectedTexture.size.y = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_HEIGHT, selectedTexture.size.y, e2dConstants.TEXTURE_HEIGHT_MIN, e2dConstants.TEXTURE_HEIGHT_MAX);
-		if (GUI.changed) rebuildMesh = rebuildMaterial = true;
+        // size
+        ShowPlacementProperties = EditorGUILayout.Foldout(ShowPlacementProperties, "Placement Parameters", e2dStyles.Foldout);
+        if (ShowPlacementProperties)
+        {
+            EditorGUI.indentLevel++;
+            GUI.changed = false;
+            selectedTexture.size.x = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_WIDTH, selectedTexture.size.x, e2dConstants.TEXTURE_WIDTH_MIN, e2dConstants.TEXTURE_WIDTH_MAX);
+            selectedTexture.size.y = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_HEIGHT, selectedTexture.size.y, e2dConstants.TEXTURE_HEIGHT_MIN, e2dConstants.TEXTURE_HEIGHT_MAX);
+            if (GUI.changed) rebuildMesh = rebuildMaterial = true;
 
-		// fade
-		GUI.changed = false;
-		selectedTexture.fadeThreshold = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_FADE_THRESHOLD, selectedTexture.fadeThreshold, 0, 1);
-		if (GUI.changed) rebuildMaterial = true;
+            // fade
+            GUI.changed = false;
+            selectedTexture.fadeThreshold = EditorGUILayout.Slider(e2dStrings.LABEL_CURVE_TEXTURE_FADE_THRESHOLD, selectedTexture.fadeThreshold, 0, 1);
+            if (GUI.changed) rebuildMaterial = true;
 
-		// fixed angle
-		GUI.changed = false;
-		selectedTexture.fixedAngle = EditorGUILayout.Toggle(e2dStrings.LABEL_CURVE_TEXTURE_FIXED_ANGLE, selectedTexture.fixedAngle);
-		if (GUI.changed) rebuildMaterial = true;
+            GUI.changed = false;
+            selectedTexture.fadePow = EditorGUILayout.Slider("FadePower", selectedTexture.fadePow, 1, 15);
+            if (GUI.changed) rebuildMaterial = true;
 
-		// update the structure
-		if (rebuildMaterial || rebuildMesh)
-		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
-			Terrain.CurveTextures[SelectedTexture] = selectedTexture;
-		}
+            // fixed angle
+            GUI.changed = false;
+            selectedTexture.fixedAngle = EditorGUILayout.Toggle(e2dStrings.LABEL_CURVE_TEXTURE_FIXED_ANGLE, selectedTexture.fixedAngle);
+            if (GUI.changed) rebuildMaterial = true;
 
-		if (rebuildMaterial)
-		{
-			Terrain.CurveMesh.RebuildMaterial();
-			EditorUtility.SetDirty(Terrain);
-		}
-		if (rebuildMesh)
-		{
-			Terrain.CurveMesh.RebuildMesh();
-			EditorUtility.SetDirty(Terrain);
-		}
+            GUI.changed = false;
+            selectedTexture.Offset = EditorGUILayout.Slider("Offset", selectedTexture.Offset, -5, 5);
+            if (GUI.changed) rebuildMesh = true;
+            EditorGUI.indentLevel--;
+        }
 
-		if (e2dUtils.DEBUG_CONTROL_TEXTURES) DrawCurveControlTextures();
-	}
+
+
+        // update the structure
+        if (rebuildMaterial || rebuildMesh)
+        {
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
+            Terrain.CurveTextures[SelectedTexture] = selectedTexture;
+        }
+
+        if (rebuildMaterial)
+        {
+            Terrain.CurveMesh.RebuildMaterial();
+            EditorUtility.SetDirty(Terrain);
+        }
+        if (rebuildMesh)
+        {
+            Terrain.CurveMesh.RebuildMesh();
+            EditorUtility.SetDirty(Terrain);
+        }
+
+        if (e2dUtils.DEBUG_CONTROL_TEXTURES) DrawCurveControlTextures();
+    }
 
 	/// Selector for choosing from a list of textures.
 	private void DrawCurveTextureSelector()
@@ -402,7 +518,7 @@ public class e2dTerrainEditor : Editor
 			// TODO: currently the shader doesn't work with more than 4 textures, so that's why it's limited
 			if (Terrain.CurveTextures.Count == 4) GUIUtility.ExitGUI();
 
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
 			Terrain.CurveMesh.AppendCurveTexture();
 			SelectedTexture = Terrain.CurveTextures.Count - 1;
 			Terrain.CurveMesh.RebuildMaterial();
@@ -412,7 +528,7 @@ public class e2dTerrainEditor : Editor
 		}
 		if (GUILayout.Button(e2dStrings.BUTTON_DELETE_TEXTURE, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_CURVE_TEXTURE);
 			Terrain.CurveMesh.RemoveCurveTexture(SelectedTexture);
 			Terrain.CurveMesh.RebuildMaterial();
 			Terrain.CurveMesh.RebuildMesh();
@@ -448,68 +564,106 @@ public class e2dTerrainEditor : Editor
 	}
 
 	/// Tool for drawing grass using a brush.
-	private void DrawGrassTool()
-	{
-		// brush
-		GUILayout.Label(e2dStrings.LABEL_BRUSH, e2dStyles.Header);
+    private void DrawGrassTool()
+    {
+        GUI.changed = false;
+        Terrain.ReplacementGrassShader = EditorGUILayout.ObjectField("Replacement Shader", Terrain.ReplacementGrassShader, typeof(Shader), !EditorUtility.IsPersistent(target)) as Shader;
+        if (GUI.changed)
+        {
+            Undo.RecordObject(Terrain, "Changed Terrain Grass Shader");
+            Terrain.GrassMesh.RebuildMaterial();
+            EditorUtility.SetDirty(Terrain);
+        }
+        // brush
+        ShowBrushProperties = EditorGUILayout.Foldout(ShowBrushProperties, e2dStrings.LABEL_BRUSH, e2dStyles.Foldout);
+        if (ShowBrushProperties)
+        {
+            EditorGUI.indentLevel++;
+            DrawBrush(true, false);
+            EditorGUI.indentLevel--;
+        }
 
-		DrawBrush(true, false);
-
-		bool rebuildMaterial = false;
-		bool rebuildMesh = false;
+        bool rebuildMaterial = false;
+        bool rebuildMesh = false;
 
 
-		// global parameters
-		GUILayout.Label(e2dStrings.LABEL_GLOBAL_PARAMETERS, e2dStyles.Header);
-		GUI.changed = false;
-		Terrain.GrassScatterRatio = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_SCATTER_RATIO, Terrain.GrassScatterRatio, e2dConstants.GRASS_SCATTER_RATIO_MIN, e2dConstants.GRASS_SCATTER_RATIO_MAX);
-		Terrain.GrassWaveSpeed = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WAVE_SPEED, Terrain.GrassWaveSpeed, e2dConstants.GRASS_WAVE_SPEED_MIN, e2dConstants.GRASS_WAVE_SPEED_MAX);
-		if (GUI.changed) rebuildMesh = rebuildMaterial = true;
+        // global parameters
+        ShowGlobalProperties = EditorGUILayout.Foldout(ShowGlobalProperties, e2dStrings.LABEL_GLOBAL_PARAMETERS, e2dStyles.Foldout);
+        if (ShowGlobalProperties)
+        {
+            EditorGUI.indentLevel++;
+            GUI.changed = false;
+            Terrain.GrassScatterRatio = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_SCATTER_RATIO, Terrain.GrassScatterRatio, e2dConstants.GRASS_SCATTER_RATIO_MIN, e2dConstants.GRASS_SCATTER_RATIO_MAX);
+            Terrain.GrassWaveSpeed = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WAVE_SPEED, Terrain.GrassWaveSpeed, e2dConstants.GRASS_WAVE_SPEED_MIN, e2dConstants.GRASS_WAVE_SPEED_MAX);
+            Terrain.GrassOffset = EditorGUILayout.Slider("Grass Z-Offset", Terrain.GrassOffset, -50, 50);
+            if (GUI.changed) rebuildMesh = rebuildMaterial = true;
+            EditorGUI.indentLevel--;
+        }
 
 
-		// texture settings
-		GUILayout.Label(e2dStrings.LABEL_TEXTURE_SETTINGS, e2dStyles.Header);
+        // texture settings
+        GUILayout.Label(e2dStrings.LABEL_TEXTURE_SETTINGS, e2dStyles.Header);
 
-		DrawGrassTextureSelector();
-		e2dGrassTexture selectedTexture = new e2dGrassTexture(Terrain.GrassTextures[SelectedTexture]);
+        DrawGrassTextureSelector();
+        e2dGrassTexture selectedTexture = new e2dGrassTexture(Terrain.GrassTextures[SelectedTexture]);
 
-		// texture
-		EditorGUILayout.BeginHorizontal(e2dStyles.TextureField);
-		GUI.changed = false;
-		EditorGUILayout.PrefixLabel(e2dStrings.LABEL_TEXTURE);
-		selectedTexture.texture = (Texture)EditorGUILayout.ObjectField(selectedTexture.texture, typeof(Texture), !EditorUtility.IsPersistent(target));
-		GUILayoutUtility.GetRect(70, 0, GUI.skin.label);
-		if (GUI.changed) rebuildMaterial = true;
-		EditorGUILayout.EndHorizontal();
+        // texture
+        GUI.changed = false;
+        ShowShaderProperties = EditorGUILayout.Foldout(ShowShaderProperties, "Shader Parameters", e2dStyles.Foldout);
+        if (ShowShaderProperties)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.BeginHorizontal();
+            selectedTexture.texture = (Texture)EditorGUILayout.ObjectField(e2dStrings.LABEL_TEXTURE, selectedTexture.texture, typeof(Texture), !EditorUtility.IsPersistent(target));
+            selectedTexture.normal = (Texture)EditorGUILayout.ObjectField("Normal", selectedTexture.normal, typeof(Texture), !EditorUtility.IsPersistent(target));
+            EditorGUILayout.EndHorizontal();
+            selectedTexture.Specular = EditorGUILayout.Slider("Specular Brightness", selectedTexture.Specular, 0, 1);
+            selectedTexture.Rimlight = EditorGUILayout.Slider("Rim Power", selectedTexture.Rimlight, 0.1f, 20);
+            selectedTexture.Cutoff = EditorGUILayout.Slider("Cutoff", selectedTexture.Cutoff, 0.1f, 0.9f);
+            if (GUI.changed) rebuildMaterial = true;
+            EditorGUI.indentLevel--;
+        }
 
-		// params
-		GUI.changed = false;
-		selectedTexture.waveAmplitude = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WAVE_AMPLITUDE, selectedTexture.waveAmplitude, e2dConstants.GRASS_WAVE_AMPLITUDE_MIN, e2dConstants.GRASS_WAVE_AMPLITUDE_MAX);
-		selectedTexture.sizeRandomness.x = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WIDTH_RANDOMNESS, selectedTexture.sizeRandomness.x, e2dConstants.GRASS_SIZE_RANDOMNESS_MIN, e2dConstants.GRASS_SIZE_RANDOMNESS_MAX);
-		selectedTexture.sizeRandomness.y = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_HEIGHT_RANDOMNESS, selectedTexture.sizeRandomness.y, e2dConstants.GRASS_SIZE_RANDOMNESS_MIN, e2dConstants.GRASS_SIZE_RANDOMNESS_MAX);
-		selectedTexture.size = e2dEditorUtils.Vector2Field(e2dStrings.LABEL_GRASS_SIZE, selectedTexture.size);
-		selectedTexture.size.x = Mathf.Max(0, selectedTexture.size.x);
-		selectedTexture.size.y = Mathf.Max(0, selectedTexture.size.y);
-		if (GUI.changed) rebuildMesh = true;
+        // params
+        GUI.changed = false;
+        ShowPlacementProperties = EditorGUILayout.Foldout(ShowPlacementProperties, "Placement Parameters", e2dStyles.Foldout);
+        if (ShowPlacementProperties)
+        {
+            EditorGUI.indentLevel++;
+            selectedTexture.waveAmplitude = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WAVE_AMPLITUDE, selectedTexture.waveAmplitude, e2dConstants.GRASS_WAVE_AMPLITUDE_MIN, e2dConstants.GRASS_WAVE_AMPLITUDE_MAX);
+            selectedTexture.sizeRandomness.x = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_WIDTH_RANDOMNESS, selectedTexture.sizeRandomness.x, e2dConstants.GRASS_SIZE_RANDOMNESS_MIN, e2dConstants.GRASS_SIZE_RANDOMNESS_MAX);
+            selectedTexture.sizeRandomness.y = EditorGUILayout.Slider(e2dStrings.LABEL_GRASS_HEIGHT_RANDOMNESS, selectedTexture.sizeRandomness.y, e2dConstants.GRASS_SIZE_RANDOMNESS_MIN, e2dConstants.GRASS_SIZE_RANDOMNESS_MAX);
+            selectedTexture.size = EditorGUILayout.Vector2Field(e2dStrings.LABEL_GRASS_SIZE, selectedTexture.size);
+            selectedTexture.size.x = Mathf.Max(0, selectedTexture.size.x);
+            selectedTexture.size.y = Mathf.Max(0, selectedTexture.size.y);
+            selectedTexture.Offset = EditorGUILayout.Slider("Grass Offset", selectedTexture.Offset, -5, 5);
+            selectedTexture.RandomOffset = EditorGUILayout.Slider("Grass Random Offset", selectedTexture.RandomOffset, -5, 5);
+            selectedTexture.RandomZOffset = EditorGUILayout.Slider("Grass Random Z-Offset", selectedTexture.RandomZOffset, 0, 5);
+            selectedTexture.SlopeAlign = EditorGUILayout.Slider("Grass Slope Align", selectedTexture.SlopeAlign, 0, 1);
+            selectedTexture.RandomRotation = EditorGUILayout.Slider("Grass Random Rotation", selectedTexture.RandomRotation, 0, 180);
+            selectedTexture.fadeThreshold = EditorGUILayout.Slider("Fade Threshold", selectedTexture.fadeThreshold, 0, 1);
+            if (GUI.changed) rebuildMesh = true;
+            EditorGUI.indentLevel--;
+        }
 
-		// update the structure
-		if (rebuildMaterial || rebuildMesh)
-		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
-			Terrain.GrassTextures[SelectedTexture] = selectedTexture;
-		}
+        // update the structure
+        if (rebuildMaterial || rebuildMesh)
+        {
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
+            Terrain.GrassTextures[SelectedTexture] = selectedTexture;
+        }
 
-		if (rebuildMaterial)
-		{
-			Terrain.GrassMesh.RebuildMaterial();
-			EditorUtility.SetDirty(Terrain);
-		}
-		if (rebuildMesh)
-		{
-			Terrain.GrassMesh.RebuildMesh();
-			EditorUtility.SetDirty(Terrain);
-		}
-	}
+        if (rebuildMaterial)
+        {
+            Terrain.GrassMesh.RebuildMaterial();
+            EditorUtility.SetDirty(Terrain);
+        }
+        if (rebuildMesh)
+        {
+            Terrain.GrassMesh.RebuildMesh();
+            EditorUtility.SetDirty(Terrain);
+        }
+    }
 
 	/// Selector for choosing from a list of textures.
 	private void DrawGrassTextureSelector()
@@ -534,7 +688,7 @@ public class e2dTerrainEditor : Editor
 		{
 			if (Terrain.GrassTextures.Count == e2dConstants.MAX_GRASS_TEXTURES) GUIUtility.ExitGUI();
 
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
 			Terrain.GrassMesh.AppendGrassTexture();
 			SelectedTexture = Terrain.GrassTextures.Count - 1;
 			Terrain.GrassMesh.RebuildMaterial();
@@ -544,7 +698,7 @@ public class e2dTerrainEditor : Editor
 		}
 		if (GUILayout.Button(e2dStrings.BUTTON_DELETE_TEXTURE, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
 			Terrain.GrassMesh.RemoveGrassTexture(SelectedTexture);
 			Terrain.GrassMesh.RebuildMaterial();
 			Terrain.GrassMesh.RebuildMesh();

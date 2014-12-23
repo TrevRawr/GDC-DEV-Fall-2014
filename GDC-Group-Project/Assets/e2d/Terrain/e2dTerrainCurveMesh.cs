@@ -90,25 +90,38 @@ public class e2dTerrainCurveMesh: e2dTerrainMesh
 			curvePosition += segmentLength;
 
 			Vector3 normal = Vector3.back;
-			if (Terrain.PlasticEdges && nodeIndex < TerrainCurve.Count - 1)
+            Vector2 normal2d = Vector2.zero;
+            if (Terrain.PlasticEdges && nodeIndex < TerrainCurve.Count - 1)
+            {
+                Vector2 tangent1 = (TerrainCurve[nodeIndex].position - TerrainCurve[nodeIndex - 1].position).normalized;
+                Vector2 tangent2 = (TerrainCurve[nodeIndex + 1].position - TerrainCurve[nodeIndex].position).normalized;
+                Vector2 tangent = (tangent1 + tangent2).normalized;
+                normal2d = new Vector2(-tangent.y, tangent.x);
+                tangent1 = ((TerrainCurve[nodeIndex].position + normal2d * CurveTextures[TerrainCurve[nodeIndex].texture].Offset) - (TerrainCurve[nodeIndex - 1].position+ normal2d * CurveTextures[TerrainCurve[nodeIndex-1].texture].Offset)).normalized;
+                tangent2 = ((TerrainCurve[nodeIndex + 1].position+ normal2d * CurveTextures[TerrainCurve[nodeIndex+1].texture].Offset) - (TerrainCurve[nodeIndex].position + normal2d * CurveTextures[TerrainCurve[nodeIndex].texture].Offset)).normalized;
+                tangent = (tangent1 + tangent2).normalized;
+                normal = new Vector3(-tangent.y, tangent.x,-1);
+            }
+			else if ( nodeIndex < TerrainCurve.Count - 1)
 			{
 				Vector2 tangent1 = (TerrainCurve[nodeIndex].position - TerrainCurve[nodeIndex - 1].position).normalized;
 				Vector2 tangent2 = (TerrainCurve[nodeIndex + 1].position - TerrainCurve[nodeIndex].position).normalized;
-				Vector2 tangent = (tangent1 + tangent2).normalized;
-				normal = new Vector3(-tangent.y, tangent.x, -1);
+                Vector2 tangent = (tangent1 + tangent2).normalized;
+                normal2d = new Vector2(-tangent.y, tangent.x);
 			}
-	
-			vertices[vertexIndex + 0] = TerrainCurve[pointIndex].position;
-			normals[vertexIndex + 0] = normal;
+
+            vertices[vertexIndex + 0] = TerrainCurve[pointIndex].position + normal2d * CurveTextures[TerrainCurve[nodeIndex].texture].Offset;
+            if (!Terrain.PlasticEdges) normal = Vector3.back;
+            normals[vertexIndex + 0] = normal;
 			uvs[vertexIndex + 0] = new Vector2(curvePosition, pointIndex);
 			uvs2[vertexIndex + 0] = vertices[vertexIndex + 0];
-			colors[vertexIndex + 0] = new Color(1, 0, 0, 0);
+            colors[vertexIndex + 0] = new Color(1,CurveTextures[TerrainCurve[nodeIndex].texture].Specular, CurveTextures[TerrainCurve[nodeIndex].texture].Rimlight*0.01f, CurveTextures[TerrainCurve[nodeIndex].texture].Cutoff);
 
-			vertices[vertexIndex + 1] = StripeVertices[nodeIndex];
-			normals[vertexIndex + 1] = Vector3.back;
+            vertices[vertexIndex + 1] = StripeVertices[nodeIndex] + new Vector3(normal2d.x,normal2d.y,0) * CurveTextures[TerrainCurve[nodeIndex].texture].Offset;
+            normals[vertexIndex + 1] = Vector3.back;
 			uvs[vertexIndex + 1] = new Vector2(curvePosition, pointIndex);
 			uvs2[vertexIndex + 1] = vertices[vertexIndex + 1];
-			colors[vertexIndex + 1] = new Color(0, 0, 0, 0);
+            colors[vertexIndex + 1] = new Color(0,CurveTextures[TerrainCurve[nodeIndex].texture].Specular, CurveTextures[TerrainCurve[nodeIndex].texture].Rimlight*0.01f, CurveTextures[TerrainCurve[nodeIndex].texture].Cutoff);
 
 
 			if (e2dUtils.PointInTriangle(vertices[vertexIndex + 1], vertices[vertexIndex - 2], vertices[vertexIndex], vertices[vertexIndex - 1]))
@@ -141,11 +154,11 @@ public class e2dTerrainCurveMesh: e2dTerrainMesh
 		filter.sharedMesh.vertices = vertices;
 		filter.sharedMesh.normals = normals;
 		filter.sharedMesh.uv = uvs;
-		filter.sharedMesh.uv2 = uvs2;
 		filter.sharedMesh.colors = colors;
 		filter.sharedMesh.triangles = triangles;
 
-
+        e2dUtils.Solve(filter.sharedMesh);
+        filter.sharedMesh.uv2 = uvs2;
 		if (SomeMaterialsMissing()) RebuildMaterial();
 	}
 
@@ -332,19 +345,60 @@ public class e2dTerrainCurveMesh: e2dTerrainMesh
 		int textureIndex = 0;
 		for (int material = 0; material < materialCount; material++)
 		{
-			materials[material] = new Material(Shader.Find("e2d/Curve"));
+            if(Terrain.ReplacementCurveShader != null)
+                materials[material] = new Material(Terrain.ReplacementCurveShader);
+            else
+                materials[material] = new Material(Shader.Find("Shinigami/Terrain/Curve"));
 
 			// texture params
 			materials[material].SetFloat("_ControlSize", ControlTextures[material].width);
 			materials[material].SetTexture("_Control", ControlTextures[material]);
-
+            Vector4 RimLight = Vector4.zero, Specular = Vector4.zero, CutOff = Vector4.zero;
 			for (int i = 0; i < e2dConstants.NUM_TEXTURES_PER_STRIPE_SHADER; i++, textureIndex++)
 			{
 				if (textureIndex >= CurveTextures.Count) break;
 				materials[material].SetTexture("_Splat" + i, CurveTextures[textureIndex].texture);
-				Vector4 prms = new Vector4(CurveTextures[textureIndex].size.x, CurveTextures[textureIndex].size.y, CurveTextures[textureIndex].fixedAngle ? 1 : 0, CurveTextures[textureIndex].fadeThreshold);
+                if(materials[material].HasProperty("_SplatNormal" +i))
+                    materials[material].SetTexture("_SplatNormal" + i, CurveTextures[textureIndex].normal);
+                if (materials[material].HasProperty("_Normal" + i))
+                    materials[material].SetTexture("_Normal" + i, CurveTextures[textureIndex].normal);
+                if (materials[material].HasProperty("_NormalMap" + i))
+                    materials[material].SetTexture("_NormalMap" + i, CurveTextures[textureIndex].normal);
+                if (materials[material].HasProperty("_SplatNormalMap" + i))
+                    materials[material].SetTexture("_SplatNormalMap" + i, CurveTextures[textureIndex].normal);
+                Vector4 prms = new Vector4(CurveTextures[textureIndex].size.x, CurveTextures[textureIndex].size.y, CurveTextures[textureIndex].fixedAngle ? 1 : 0, Mathf.Pow(CurveTextures[textureIndex].fadeThreshold, CurveTextures[textureIndex].fadePow));
 				materials[material].SetVector("_SplatParams" + i, prms);
+
+                if (i == 0) RimLight.x = CurveTextures[i].Rimlight;
+                if (i == 1) RimLight.y = CurveTextures[i].Rimlight;
+                if (i == 2) RimLight.z = CurveTextures[i].Rimlight;
+                if (i == 3) RimLight.w = CurveTextures[i].Rimlight;
+
+                if (i == 0) Specular.x = CurveTextures[i].Specular;
+                if (i == 1) Specular.y = CurveTextures[i].Specular;
+                if (i == 2) Specular.z = CurveTextures[i].Specular;
+                if (i == 3) Specular.w = CurveTextures[i].Specular;
+
+                if (i == 0) CutOff.x = CurveTextures[i].Cutoff;
+                if (i == 1) CutOff.y = CurveTextures[i].Cutoff;
+                if (i == 2) CutOff.z = CurveTextures[i].Cutoff;
+                if (i == 3) CutOff.w = CurveTextures[i].Cutoff;
 			}
+
+            if (materials[material].HasProperty("_SpecBrightness"))
+                materials[material].SetVector("_SpecBrightness", Specular);
+            if (materials[material].HasProperty("_Spec"))
+                materials[material].SetVector("_Spec", Specular);
+            if (materials[material].HasProperty("_Specular"))
+                materials[material].SetVector("_Specular", Specular);
+            if (materials[material].HasProperty("_RimPower"))
+                materials[material].SetVector("_RimPower", RimLight);
+            if (materials[material].HasProperty("_Rim"))
+                materials[material].SetVector("_Rim", RimLight);
+            if (materials[material].HasProperty("_Power"))
+                materials[material].SetVector("_Power", RimLight);
+            if (materials[material].HasProperty("_Cutoff"))
+                materials[material].SetVector("_Cutoff", CutOff);
 		}
 
 		// set the new materials to the renderer

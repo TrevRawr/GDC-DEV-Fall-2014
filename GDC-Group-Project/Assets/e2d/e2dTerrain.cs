@@ -28,7 +28,8 @@ public class e2dTerrain : MonoBehaviour
 	/// Rectangle defining the edges (boundary) of the terrain.
 	public Rect TerrainBoundary = new Rect(0, 0, 0, 0);
 	/// Texture used to fill the terrain from the curve to the boundary.
-	public Texture FillTexture;
+	public Texture FillTexture, NormalFillTexture;
+    public float Specular, Rimlight;
 	/// Width of one tile of FillTexture (world units).
 	public float FillTextureTileWidth = e2dConstants.INIT_FILL_TEXTURE_WIDTH;
 	/// Height of one tile of FillTexture (world units).
@@ -50,8 +51,12 @@ public class e2dTerrain : MonoBehaviour
 	public float GrassWaveSpeed = e2dConstants.INIT_GRASS_WAVE_SPEED;
 	/// Influences the amount of random scattering.
 	public float GrassScatterRatio = e2dConstants.INIT_GRASS_SCATTER_RATIO;
+    public float GrassOffset = 0.2f;
+    public float FillOffset = -0.2f;
 	/// If true the edges of the terrain surface have modified normals to look more plastic.
 	public bool PlasticEdges = true;
+
+    public Shader ReplacementFillShader, ReplacementCurveShader, ReplacementGrassShader;
 
 
 	// private vars

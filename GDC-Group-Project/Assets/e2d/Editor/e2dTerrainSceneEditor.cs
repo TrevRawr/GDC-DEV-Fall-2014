@@ -251,7 +251,7 @@ public class e2dTerrainSceneEditor
 		// this must come after any handles since we want them to have precedence in input handling
 		if (MouseClickedUp())
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_EDIT_NODES);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_EDIT_NODES);
 			if (ShiftPressed())
 			{
 				DeleteCurvePoint(ControlPressed());
@@ -280,7 +280,7 @@ public class e2dTerrainSceneEditor
 			float delta = (mCursorPosition - mLastAppliedPosition).magnitude;
 			if (MouseClickedDown() || delta > e2dConstants.BRUSH_APPLY_STEP_RATIO * HandleUtility.GetHandleSize(mCursorPosition))
 			{
-				Undo.RegisterUndo(Terrain, e2dStrings.UNDO_HEIGHT_BRUSH);
+                Undo.RecordObject(Terrain, e2dStrings.UNDO_HEIGHT_BRUSH);
 				ApplyBrush();
 				mLastAppliedPosition = mCursorPosition;
 				EditorUtility.SetDirty(Terrain);
@@ -299,7 +299,7 @@ public class e2dTerrainSceneEditor
 
 		if (!ShiftPressed() && !ControlPressed() && MousePressed())
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_CURVE_TEXTURE_BRUSH);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_CURVE_TEXTURE_BRUSH);
 			ApplyBrush();
 			EditorUtility.SetDirty(Terrain);
 		}
@@ -315,7 +315,7 @@ public class e2dTerrainSceneEditor
 
 		if (!ShiftPressed() && !ShiftAndControlPressed() && MousePressed())
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GRASS_TEXTURE);
 			ApplyBrush();
 			EditorUtility.SetDirty(Terrain);
 		}
@@ -567,7 +567,7 @@ public class e2dTerrainSceneEditor
 
 		GUI.changed = false;
 
-		Undo.SetSnapshotTarget(Terrain, e2dStrings.UNDO_MOVE_NODES);
+        Undo.RecordObject(Terrain, e2dStrings.UNDO_MOVE_NODES);
 
 		// compute the scale of handles
 		// first we get the average distance between nodes
@@ -738,7 +738,7 @@ public class e2dTerrainSceneEditor
 		if (drawHandles)
 		{
 
-			Undo.SetSnapshotTarget(Terrain, e2dStrings.UNDO_BOUNDARY);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_BOUNDARY);
 
 			bool moved = false;
 		

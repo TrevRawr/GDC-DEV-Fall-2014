@@ -64,7 +64,7 @@ public class e2dCurveNode
 public class e2dCurveTexture
 {
 	/// Texture data.
-	public Texture texture;
+    public Texture texture, normal;
 	/// Size in the local game object space.
 	public Vector2 size;
 	/// If true the texture is not aligned to the surface curve.
@@ -72,6 +72,11 @@ public class e2dCurveTexture
 	/// Threshold of the V parameter of the mesh when the alpha is to be faded to zero. Lies in [0,1]. This helps
 	/// the stripe to blend better into the fill mesh.
 	public float fadeThreshold;
+    public float fadePow;
+    public float Specular;
+    public float Rimlight;
+    public float Cutoff;
+    public float Offset;
 
 	/// Constructor from the texture data. The rest is inited using default values.
 	public e2dCurveTexture(Texture _texture)
@@ -80,6 +85,11 @@ public class e2dCurveTexture
 		size = new Vector2(1, 1);
 		fixedAngle = false;
 		fadeThreshold = 0.3f;
+        Offset = 0;
+        fadePow = 1;
+        normal = null;
+        Rimlight = 1;
+        Specular = 0;
 	}
 
 	/// Copy constructor.
@@ -89,6 +99,11 @@ public class e2dCurveTexture
 		size = other.size;
 		fixedAngle = other.fixedAngle;
 		fadeThreshold = other.fadeThreshold;
+        Offset = other.Offset;
+        fadePow = other.fadePow;
+        normal = other.normal;
+        Rimlight = other.Rimlight;
+        Specular = other.Specular;
 	}
 }
 
@@ -98,7 +113,7 @@ public class e2dCurveTexture
 public class e2dGrassTexture
 {
 	/// Texture data.
-	public Texture texture;
+	public Texture texture, normal;
 	/// Size in world coordinates.
 	public Vector2 size;
 	/// Randomness of the size in world units.
@@ -106,22 +121,49 @@ public class e2dGrassTexture
 	/// Influences how much the grass waves.
 	public float waveAmplitude;
 
+    public float SlopeAlign;
+    public float RandomOffset, RandomZOffset;
+    public float RandomRotation;
+    public float Offset;
+    public float fadeThreshold;
+    public float Cutoff;
+    public float Specular;
+    public float Rimlight;
+
 	/// Constructor from the texture data. The rest is inited using default values.
 	public e2dGrassTexture(Texture _texture)
 	{
 		texture = _texture;
+        normal = null;
 		size = new Vector2(1, 1);
 		sizeRandomness = new Vector2(0.5f, 0.5f);
 		waveAmplitude = 0.5f;
+        Offset = 0;
+        RandomOffset = 0;
+        fadeThreshold = 0.3f;
+        RandomRotation = 0;
+        RandomZOffset = 0;
+        SlopeAlign = 1;
+        Specular = 0;
+        Rimlight = 1;
 	}
 
 	/// Copy constructor.
 	public e2dGrassTexture(e2dGrassTexture other)
 	{
 		texture = other.texture;
+        normal = other.normal;
 		size = other.size;
 		sizeRandomness = other.sizeRandomness;
 		waveAmplitude = other.waveAmplitude;
+        Offset = other.Offset;
+        RandomOffset = other.RandomOffset;
+        fadeThreshold = other.fadeThreshold;
+        RandomRotation = other.RandomRotation;
+        RandomZOffset = other.RandomZOffset;
+        SlopeAlign = other.SlopeAlign;
+        Specular = other.Specular;
+        Rimlight = other.Rimlight;
 	}
 }
 

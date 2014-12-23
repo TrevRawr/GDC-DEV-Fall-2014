@@ -137,7 +137,6 @@ public class e2dTerrainGeneratorEditor : Editor
 		}
 
 
-		EditorGUIUtility.LookLikeInspector();
 	}
 
 	/// Target area settings drawn in the inspector.
@@ -210,7 +209,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		// generate button
 		if (GUILayout.Button(e2dStrings.BUTTON_GENERATE, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GENERATE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GENERATE);
 			Generator.GenerateCurve(ref mDebugHeightmap);
 			EditorUtility.SetDirty(Generator);
 		}
@@ -303,7 +302,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		// smooth button
 		if (GUILayout.Button(e2dStrings.BUTTON_SMOOTH, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_SMOOTH);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_SMOOTH);
 			Generator.SmoothCurve();
 			EditorUtility.SetDirty(Generator);
 		}
@@ -354,7 +353,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		// generate button
 		if (GUILayout.Button(e2dStrings.BUTTON_TEXTURE, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_TEXTURE);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_TEXTURE);
 			Generator.TextureTerrain();
 			EditorUtility.SetDirty(Generator);
 		}
@@ -374,7 +373,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		// generate button
 		if (GUILayout.Button(e2dStrings.BUTTON_GENERATE, GUILayout.ExpandWidth(false)))
 		{
-			Undo.RegisterUndo(Terrain, e2dStrings.UNDO_GENERATE_GRASS);
+            Undo.RecordObject(Terrain, e2dStrings.UNDO_GENERATE_GRASS);
 			Generator.GenerateGrass();
 			EditorUtility.SetDirty(Generator);
 		}
@@ -453,7 +452,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		e2dEditorUtils.DrawLine(points[3], points[0], lineWidth);
 
 		// undo
-		Undo.SetSnapshotTarget(Generator, e2dStrings.UNDO_GENERATOR_AREA);
+        Undo.RecordObject(Generator, e2dStrings.UNDO_GENERATOR_AREA);
 
 		// rotation
 		if (drawHandles)
@@ -507,7 +506,7 @@ public class e2dTerrainGeneratorEditor : Editor
 		// handles to move the peaks
 		if (!delete)
 		{
-			Undo.SetSnapshotTarget(Generator, e2dStrings.UNDO_EDIT_PEAKS);
+            Undo.RecordObject(Generator, e2dStrings.UNDO_EDIT_PEAKS);
 			GUI.changed = false;
 			for (int i = 0; i < Generator.Peaks.Count; i++)
 			{
@@ -541,12 +540,12 @@ public class e2dTerrainGeneratorEditor : Editor
 		{
 			if (delete)
 			{
-				Undo.RegisterUndo(Generator, e2dStrings.UNDO_EDIT_PEAKS);
+				Undo.RecordObject(Generator, e2dStrings.UNDO_EDIT_PEAKS);
 				Generator.Peaks.RemoveAt(GetPeakIndexToDelete());
 			}
 			else if (e2dUtils.PointInConvexPolygon(TerrainSceneEditor.GetCursorPosition(), Generator.GetTargetAreaBoundary()))
 			{
-				Undo.RegisterUndo(Generator, e2dStrings.UNDO_EDIT_PEAKS);
+                Undo.RecordObject(Generator, e2dStrings.UNDO_EDIT_PEAKS);
 				Generator.Peaks.Add(new e2dGeneratorPeak(Generator.TransformPointIntoTargetArea(TerrainSceneEditor.GetCursorPosition())));
 			}
 			EditorUtility.SetDirty(Generator);

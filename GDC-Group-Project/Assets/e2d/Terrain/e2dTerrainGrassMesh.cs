@@ -112,11 +112,11 @@ public class e2dTerrainGrassMesh : e2dTerrainMesh
 				// custom data passed to the shader
 				float data_type = type * 0.01f;
 				float data_amplitude = GrassTextures[type].waveAmplitude * height * 0.1f;
-				Vector2 data_direction = (TerrainCurve[pointIndex + 1].position - TerrainCurve[pointIndex].position).normalized;
+                Vector2 data_direction = Vector2.Lerp(Vector2.right,(TerrainCurve[pointIndex + 1].position - TerrainCurve[pointIndex].position).normalized, GrassTextures[type].SlopeAlign);
 				float data_offset = 0; // computed later
 
 				// direction setup
-				Vector3 segmentDirection = TerrainCurve[pointIndex + 1].position - TerrainCurve[pointIndex].position;
+                Vector3 segmentDirection = Vector2.Lerp(Vector2.right,TerrainCurve[pointIndex + 1].position - TerrainCurve[pointIndex].position, GrassTextures[type].SlopeAlign);
 				Vector3 segmentNormal = new Vector2(-segmentDirection.y, segmentDirection.x).normalized;
 
 				// normals
@@ -124,37 +124,42 @@ public class e2dTerrainGrassMesh : e2dTerrainMesh
 				Vector3 bottomNormal = Vector3.back;
 				if (Terrain.PlasticEdges)
 				{
-					bottomNormal = Vector3.up;
+                    topNormal = Vector3.up;
 				}
 
+                Vector3 Offset = segmentNormal * (GrassTextures[type].Offset + Random.Range(-GrassTextures[type].RandomOffset, GrassTextures[type].RandomOffset)) + (Vector3.forward * Random.Range(-GrassTextures[type].RandomZOffset, GrassTextures[type].RandomZOffset));
+                float RandomAngle = Random.Range(-GrassTextures[type].RandomRotation, GrassTextures[type].RandomRotation);
+
+                Vector3 AngleOffset = Quaternion.Euler(new Vector3(0, 0, RandomAngle)) * (height * segmentNormal);
+
 				// compute the vertices, UVs and custom data
-				vertices[vertexIndex + 0] = e2dUtils.Lerp(TerrainCurve[pointIndex].position, TerrainCurve[pointIndex + 1].position, delta - 0.5f * normalizedWidth);
+                vertices[vertexIndex + 0] = e2dUtils.Lerp(TerrainCurve[pointIndex].position, TerrainCurve[pointIndex + 1].position, delta - 0.5f * normalizedWidth) + Offset;          
 				normals[vertexIndex + 0] = bottomNormal;
 				uvs[vertexIndex + 0] = new Vector2(0, e2dConstants.GRASS_ROOT_SIZE);
 				uvs2[vertexIndex + 0] = data_direction;
-				colors[vertexIndex + 0] = new Color(data_type, data_amplitude, 0, 0);
+                colors[vertexIndex + 0] = new Color(data_type, data_amplitude, 0, GrassTextures[type].fadeThreshold);
 
-				vertices[vertexIndex + 1] = vertices[vertexIndex + 0] + height * segmentNormal;
+                vertices[vertexIndex + 1] = vertices[vertexIndex + 0] + AngleOffset;
 				normals[vertexIndex + 1] = topNormal;
 				uvs[vertexIndex + 1] = new Vector2(0, 1);
 				uvs2[vertexIndex + 1] = data_direction;
 				data_offset = totalOffset + (delta - 0.5f * normalizedWidth) * segmentLength;
 				data_offset = (data_offset % (2 * 3.14f)) * 0.1f;
-				colors[vertexIndex + 1] = new Color(data_type, data_amplitude, data_offset, 0);
+                colors[vertexIndex + 1] = new Color(data_type, data_amplitude, data_offset, 1);
 
-				vertices[vertexIndex + 2] = e2dUtils.Lerp(TerrainCurve[pointIndex].position, TerrainCurve[pointIndex + 1].position, delta + 0.5f * normalizedWidth);
+                vertices[vertexIndex + 2] = e2dUtils.Lerp(TerrainCurve[pointIndex].position, TerrainCurve[pointIndex + 1].position, delta + 0.5f * normalizedWidth) + Offset;
 				normals[vertexIndex + 2] = bottomNormal;
 				uvs[vertexIndex + 2] = new Vector2(1, e2dConstants.GRASS_ROOT_SIZE);
 				uvs2[vertexIndex + 2] = data_direction;
-				colors[vertexIndex + 2] = new Color(data_type, data_amplitude, 0, 0);
+                colors[vertexIndex + 2] = new Color(data_type, data_amplitude, 0, GrassTextures[type].fadeThreshold);
 
-				vertices[vertexIndex + 3] = vertices[vertexIndex + 2] + height * segmentNormal;
+                vertices[vertexIndex + 3] = vertices[vertexIndex + 2] + AngleOffset;
 				normals[vertexIndex + 3] = topNormal;
 				uvs[vertexIndex + 3] = new Vector2(1, 1);
 				uvs2[vertexIndex + 3] = data_direction;
 				data_offset = totalOffset + (delta + 0.5f * normalizedWidth) * segmentLength;
 				data_offset = (data_offset % (2 * 3.14f)) * 0.1f;
-				colors[vertexIndex + 3] = new Color(data_type, data_amplitude, data_offset, 0);
+                colors[vertexIndex + 3] = new Color(data_type, data_amplitude, data_offset, 1);
 
 				triangles[triangleIndex + 0] = vertexIndex;
 				triangles[triangleIndex + 1] = vertexIndex + 1;
@@ -181,6 +186,8 @@ public class e2dTerrainGrassMesh : e2dTerrainMesh
 		filter.sharedMesh.uv2 = uvs2;
 		filter.sharedMesh.colors = colors;
 		filter.sharedMesh.triangles = triangles;
+
+        e2dUtils.Solve(filter.sharedMesh);
 
 		if (SomeMaterialsMissing()) RebuildMaterial();
 	}
@@ -245,14 +252,55 @@ public class e2dTerrainGrassMesh : e2dTerrainMesh
 
 		// init the material
 		materials = new Material[1];
-		materials[0] = new Material(Shader.Find("e2d/Grass"));
+        if(Terrain.ReplacementGrassShader != null)
+            materials[0] = new Material(Terrain.ReplacementGrassShader);
+		else
+            materials[0] = new Material(Shader.Find("Shinigami/Terrain/Grass"));
 		materials[0].SetFloat("_WaveFrequency", Terrain.GrassWaveSpeed);
 
+        Vector4 RimLight = Vector4.zero, Specular = Vector4.zero, CutOff = Vector4.zero;
 		// texture params
 		for (int i=0; i<GrassTextures.Count; i++)
 		{
 			materials[0].SetTexture("_Grass" + i, GrassTextures[i].texture);
+            if (materials[0].HasProperty("_GrassNormal" + i))
+                materials[0].SetTexture("_GrassNormal" + i, GrassTextures[i].normal);
+            if (materials[0].HasProperty("_GrassNormalMap" + i))
+                materials[0].SetTexture("_GrassNormalMap" + i, GrassTextures[i].normal);
+            if (materials[0].HasProperty("_Normal" + i))
+                materials[0].SetTexture("_Normal" + i, GrassTextures[i].normal);
+            if (materials[0].HasProperty("_NormalMap" + i))
+                materials[0].SetTexture("_NormalMap" + i, GrassTextures[i].normal);
+
+            if (i == 0) RimLight.x = GrassTextures[i].Rimlight;
+            if (i == 1) RimLight.y = GrassTextures[i].Rimlight;
+            if (i == 2) RimLight.z = GrassTextures[i].Rimlight;
+            if (i == 3) RimLight.w = GrassTextures[i].Rimlight;
+
+            if (i == 0) Specular.x = GrassTextures[i].Specular;
+            if (i == 1) Specular.y = GrassTextures[i].Specular;
+            if (i == 2) Specular.z = GrassTextures[i].Specular;
+            if (i == 3) Specular.w = GrassTextures[i].Specular;
+
+            if (i == 0) CutOff.x = GrassTextures[i].Cutoff;
+            if (i == 1) CutOff.y = GrassTextures[i].Cutoff;
+            if (i == 2) CutOff.z = GrassTextures[i].Cutoff;
+            if (i == 3) CutOff.w = GrassTextures[i].Cutoff;
 		}
+        if (materials[0].HasProperty("_SpecBrightness"))
+            materials[0].SetVector("_SpecBrightness", Specular);
+        if (materials[0].HasProperty("_Spec"))
+            materials[0].SetVector("_Spec", Specular);
+        if (materials[0].HasProperty("_Specular"))
+            materials[0].SetVector("_Specular", Specular);
+        if (materials[0].HasProperty("_RimPower"))
+            materials[0].SetVector("_RimPower", RimLight);
+        if (materials[0].HasProperty("_Rim"))
+            materials[0].SetVector("_Rim", RimLight);
+        if (materials[0].HasProperty("_Power"))
+            materials[0].SetVector("_Power", RimLight);
+        if (materials[0].HasProperty("_Cutoff"))
+            materials[0].SetVector("_Cutoff", CutOff);
 
 		// set the new materials to the renderer
 		renderer.materials = materials;
