@@ -3,16 +3,16 @@ using System.Collections;
 
 public class Dino_Move : MonoBehaviour 
 {
-	Animator dino;  //animation state machine for dino
-	float moveX;
-	public float maxSpeed;
-	public float speedX;
-	public bool grounded;
-	public float jumpForce;
-	bool facingRight;
-	bool jump;
-	//Ray2D ray;
-	RaycastHit2D hit;
+	Animator dino;  		// Animation state machine for dino
+	public float maxSpeed;	// The maximum speed the dino can go
+	public float speedX;	// The amount of speed
+	public float jumpForce;	// The force of each jump
+
+	private float moveX;
+	private bool facingRight;
+	private bool jump;		// TRUE if dino can jump. FALSE otherwise
+	private bool grounded;	// TRUE if dino is touching the ground. FALSE otherwise
+	RaycastHit2D hit; 		//Ray2D ray -> what does this do?
 
 	// Use this for initialization
 	void Start () 
@@ -20,20 +20,21 @@ public class Dino_Move : MonoBehaviour
 		dino = gameObject.GetComponent<Animator> ();  //initialize it as the state machine attached to the dino object so we can reference it in this code
 	}
 
-	//ground detection control
+	// Gound detection control -- Touched the ground
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "ground")
 			grounded = true;
 	}
 
+	// Gound detection control -- Left the ground
 	void OnCollisionExit2D(Collision2D collision)
 	{
 	 	if (collision.gameObject.tag == "ground")
 			grounded = false;
 	}
 
-	//flip the character when switching directions from left to right
+	// Flip the character when switching directions from left to right
 	void Flip()
 	{
 		Vector3 theScale = transform.localScale;
@@ -45,10 +46,14 @@ public class Dino_Move : MonoBehaviour
 	void FixedUpdate()
 	{
 		moveX = Input.GetAxis ("Horizontal");
+
+		// To the right, to the right
 		if (moveX > 0 && !facingRight)
 		{
 			Flip ();
 		}
+
+		// To the left, to the left
 		else if (moveX < 0 && facingRight)
 		{
 			Flip ();
@@ -58,16 +63,17 @@ public class Dino_Move : MonoBehaviour
 		Vector2 movementX = new Vector2 (moveX * speedX, 0);
 		rigidbody2D.AddForce (movementX);
 
-		//limit max horizontal speed
+		// Limit max horizontal speed
 		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed)
 		{
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 		}
 
-
+		// When touching the ground and player inputs 'Jump'
 		if (Input.GetButton("Jump") && grounded)
 			jump = true;
 
+		// Jumping sequence
 		if (jump) 
 		{
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
