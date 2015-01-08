@@ -9,6 +9,9 @@ var activated : boolean = false;
 
 function Awake()
 {
+if(!enabled)
+return;
+
 	transform.position=waypoints[0].position;
 	
 	if(activateOnAwake)
@@ -39,7 +42,7 @@ function OnCollisionExit( other : Collision)
 function MovePlatform()
 {
 	var lerpIndex : float;
-	yield WaitForSeconds(waitTime);
+	
 	while(true)
 	{
 		if((waypointNext)>(waypoints.length-1))

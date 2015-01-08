@@ -47,39 +47,13 @@ public class PlayerHealth : MonoBehaviour
 			// ... and if the time exceeds the time of the last hit plus the time between hits...
 			if (Time.time > lastHitTime + repeatDamagePeriod) 
 			{
-				// ... and if the player still has health...
-				if(health > 0f)
-				{
+
 					// ... take damage and reset the lastHitTime.
 					TakeDamage(col.transform); 
 					lastHitTime = Time.time; 
-				}
-				// If the player doesn't have health, do some stuff, let him fall into the river to reload the level.
-				else
-				{
-					// Find all of the colliders on the gameobject and set them all to be triggers.
-					Collider2D[] cols = GetComponents<Collider2D>();
-					foreach(Collider2D c in cols)
-					{
-						c.isTrigger = true;
-					}
 
-					// Move all sprite parts of the player to the front
-					SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-					foreach(SpriteRenderer s in spr)
-					{
-						s.sortingLayerName = "UI";
-					}
+				// ... and if the player still has health...
 
-					// ... disable user Player Control script
-					GetComponent<PlayerControl>().enabled = false;
-
-					// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
-					GetComponentInChildren<Gun>().enabled = false;
-
-					// ... Trigger the 'Die' animation state
-					anim.SetTrigger("Die");
-				}
 			}
 		}
 		if(this.health < maxHealth)
@@ -113,6 +87,34 @@ public class PlayerHealth : MonoBehaviour
 		// Play a random clip of the player getting hurt.
 		int i = Random.Range (0, ouchClips.Length);
 		AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
+
+		if(health < 0f)
+		{
+			// If the player doesn't have health, do some stuff, let him fall into the river to reload the level.
+			
+			// Find all of the colliders on the gameobject and set them all to be triggers.
+			Collider2D[] cols = GetComponents<Collider2D>();
+			foreach(Collider2D c in cols)
+			{
+				c.isTrigger = true;
+			}
+			
+			// Move all sprite parts of the player to the front
+			SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+			foreach(SpriteRenderer s in spr)
+			{
+				s.sortingLayerName = "UI";
+			}
+			
+			// ... disable user Player Control script
+			GetComponent<PlayerControl>().enabled = false;
+			
+			// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
+			GetComponentInChildren<Gun>().enabled = false;
+			
+			// ... Trigger the 'Die' animation state
+			anim.SetTrigger("Die");
+		}
 	}
 
 	void KillDino ()
@@ -121,6 +123,11 @@ public class PlayerHealth : MonoBehaviour
 		anim.SetTrigger("Die");
 		Debug.Log ("Dino died aaaa!!");
 		Application.LoadLevel(Application.loadedLevel);
+	}
+
+	void OnDestroy()
+	{
+		this.StopAllCoroutines();
 	}
 
 

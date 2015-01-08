@@ -18,6 +18,12 @@ public class ExplodeOnCollision : MonoBehaviour {
 		Explode();
 	}
 
+	void OnDrawGizmos()
+	{
+		Gizmos.color=Color.red;
+		Gizmos.DrawWireSphere(this.transform.position,explosionRadius);
+	}
+
 	void Explode()
 	{
 		GameObject.Destroy(this.gameObject);
@@ -27,11 +33,20 @@ public class ExplodeOnCollision : MonoBehaviour {
 		
 		int i = 0;
 		while (i < hitColliders.Length) {
+
+			//Player message
 			hitColliders[i].SendMessage("TakeDamage",this.transform,SendMessageOptions.DontRequireReceiver);
+
+			//EnemyMessage
+			hitColliders[i].SendMessage("Hurt",this.transform,SendMessageOptions.DontRequireReceiver);
+
 			Rigidbody2D r = hitColliders[i].gameObject.GetComponent<Rigidbody2D>();
 			if(r != null)
 			{
-				r.AddForceAtPosition(new Vector2(explosiveForce,explosiveForce),this.transform.position);
+				Vector2 dir = (r.transform.position - this.transform.position).normalized; 
+				Vector2 f = new Vector2(explosiveForce,explosiveForce);
+				f.Scale(dir);
+				r.AddForceAtPosition( f,this.transform.position,ForceMode2D.Impulse);
 			}
 			i++;
 		}
