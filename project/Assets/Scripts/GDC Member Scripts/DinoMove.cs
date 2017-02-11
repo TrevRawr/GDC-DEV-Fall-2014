@@ -61,12 +61,12 @@ public class DinoMove : MonoBehaviour
 
 		dino.SetFloat ("move", moveX);
 		Vector2 movementX = new Vector2 (moveX * speedX, 0);
-		rigidbody2D.AddForce (movementX);
+		GetComponent<Rigidbody2D>().AddForce (movementX);
 
 		// Limit max horizontal speed
-		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed)
+		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
 		{
-			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
 
 		// When touching the ground and player inputs 'Jump'
@@ -76,7 +76,7 @@ public class DinoMove : MonoBehaviour
 		// Jumping sequence
 		if (jump) 
 		{
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
 			jump = false;
 		}
 	}

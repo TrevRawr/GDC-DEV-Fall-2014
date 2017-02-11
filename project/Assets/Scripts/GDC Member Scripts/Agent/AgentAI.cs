@@ -27,10 +27,10 @@ public class AgentAI : MonoBehaviour {
 	void move() {
 		if (engage == false) {
 						if (player.position.x > agent.position.x) {
-								rigidbody2D.velocity = Vector2.right * speed;
+								GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
 								
 						} else if (player.position.x < agent.position.x) {
-								rigidbody2D.velocity.Set (-speed, 0);
+								GetComponent<Rigidbody2D>().velocity.Set (-speed, 0);
 						}
 						animator.SetFloat ("speed", 1);
 				} else {
@@ -43,7 +43,7 @@ public class AgentAI : MonoBehaviour {
 						InvokeRepeating ("shoot", 0, fireInterval);
 						engage = true;
 				}
-		rigidbody2D.velocity = Vector2.zero;
+		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 
 	public void DeengagePlayer() {

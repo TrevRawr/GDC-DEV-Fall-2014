@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 /// The shader renders only single bush of grass waving it according to the parameters.
 /// The wave speed is the same for all bushes but it is offset based on the position of grass.
 /// Custom data are passed through the color bindings:
@@ -77,7 +79,7 @@ inline half4 LightingColoredSpecular (SurfaceOutput s, half3 lightDir, half3 vie
 
 void vert(inout appdata_full v, out Input o)
 {
-	float2 worldPos = mul ((float4x4)_Object2World, v.vertex).xy;
+	float2 worldPos = mul ((float4x4)unity_ObjectToWorld, v.vertex).xy;
 
 	float2 bendDir = normalize (worldPos.xy - _obstacle.xy);//direction of obstacle bend
     float distMulti = (_affectDist-min(_affectDist,distance(worldPos.xy,_obstacle.xy)))/_affectDist; //distance falloff

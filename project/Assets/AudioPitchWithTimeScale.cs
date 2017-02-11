@@ -8,6 +8,6 @@ public class AudioPitchWithTimeScale : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.audio.pitch=Time.timeScale;
+		this.GetComponent<AudioSource>().pitch=Time.timeScale;
 	}
 }
